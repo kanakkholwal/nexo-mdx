@@ -17,7 +17,6 @@ import ListUnordered from './plugins/list/unordered';
 import Logger from './plugins/logger';
 import ModeToggle from './plugins/modeToggle';
 import PinToolBar from './plugins/pinToolBar';
-import type { PluginProps } from './plugins/Plugin';
 import { PluginComponent } from './plugins/Plugin';
 import TabInsert from './plugins/tabInsert';
 import Table from './plugins/table';
@@ -45,7 +44,6 @@ Editor.use(PinToolBar);
 
 export { PluginComponent };
 
-  export type { PluginProps };
 
   export { default as getDecorated } from './utils/decorate';
 
