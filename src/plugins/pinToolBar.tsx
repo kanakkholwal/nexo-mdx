@@ -45,7 +45,7 @@ export default class PinToolBar extends PluginComponent<PinToolBarState> {
       <Button
         size="icon_sm" variant="ghost"
         className="button button-type-pinned"
-        title={i18n.get(pinned ? 'btnExitFullScreen' : 'btnFullScreen')}
+        title={i18n.get(pinned ? 'btnUnPinToolbar' : 'btnPinToolbar')}
         onClick={this.handleClick}
       >
         <Icon type={!pinned ? 'pin' : 'pin-off'} />

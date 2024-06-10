@@ -14,6 +14,7 @@ import * as React from 'react';
 import { v4 as uuid } from 'uuid';
 import defaultConfig from './defaultConfig';
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Plugin = { comp: any; config: any };
 
 interface EditorProps extends EditorConfig {
@@ -25,6 +26,7 @@ interface EditorProps extends EditorConfig {
   placeholder?: string;
   readOnly?: boolean;
   className?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   config?: any;
   plugins?: string[];
   // Configs
@@ -52,6 +54,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {any} comp Plugin component
    * @param {any} config Other configs
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static use(comp: any, config: any = {}) {
     // Check for duplicate plugins
     for (let i = 0; i < Editor.plugins.length; i++) {
@@ -67,6 +70,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * Unregister plugin
    * @param {any} comp Plugin component
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static unuse(comp: any) {
     for (let i = 0; i < Editor.plugins.length; i++) {
       if (Editor.plugins[i].comp === comp) {
@@ -105,7 +109,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
   private hasContentChanged = true;
 
   private composing = false;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private pluginApis = new Map<string, any>();
 
 
@@ -404,6 +408,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param type
    * @param option
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   insertMarkdown(type: string, option: any = {}) {
     const curSelection = this.getSelection();
     let decorateOption = option ? { ...option } : {};
@@ -603,6 +608,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {EditorEvent} event Event type
    * @param {any} cb Callback
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   on(event: EditorEvent, cb: any) {
     const eventType = this.getEventType(event);
     if (eventType) {
@@ -615,6 +621,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {EditorEvent} event Event type
    * @param {any} cb Callback
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   off(event: EditorEvent, cb: any) {
     const eventType = this.getEventType(event);
     if (eventType) {
@@ -666,6 +673,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {string} name API name
    * @param {any} cb callback
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerPluginApi(name: string, cb: any) {
     this.pluginApis.set(name, cb);
   }
@@ -680,6 +688,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {any} others arguments
    * @returns {any}
    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   callPluginApi<T>(name: string, ...others: any): T {
     const handler = this.pluginApis.get(name);
     if (!handler) {
@@ -738,7 +747,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
     const getPluginAt = (at: string) => this.state.plugins[at] || [];
 
     return (
-      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full relative gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
+      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
         <ToolBar isPinned={this.isPinned()} isPreview={view === "preview"} left={getPluginAt('left')} right={getPluginAt('right')} />
         <div>
           {view === "edit" ? <div className="editor-container" aria-label='editor-container'>
