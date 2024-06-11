@@ -1,6 +1,6 @@
 {
   "name": "nexo-mdx",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "type": "module",
   "main": "dist/nexo-mdx.umd.js",
   "module": "dist/nexo-mdx.es.js",
@@ -23,7 +23,6 @@
     "clsx": "^2.1.1",
     "eventemitter3": "^5.0.1",
     "lucide-react": "^0.390.0",
-    "markdown-to-jsx": "^7.4.7",
     "nanoid": "^5.0.7",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7"

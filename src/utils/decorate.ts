@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { repeat } from './tool';
 
 interface Decorated {
@@ -9,7 +10,16 @@ interface Decorated {
   };
 }
 
-// 最简单的Decorator，即在现有文字的基础上加上前缀、后缀即可
+// The simplest Decorator is to add prefixes and suffixes to the existing text.
+const IMAGE_REGEX = /!\[(.*?)\]\((.*?)\)/g;
+
+function addClassNames(text: string, classNames: string): string {
+  return text.replace(IMAGE_REGEX, (_, alt, src) => {
+    const className  = classNames ? `{${cn(classNames)}}` : ''; // Tailwind CSS classname
+    return `![${alt}](${src})${className}`;
+  });
+}
+
 const SIMPLE_DECORATOR: { [x: string]: [string, string] } = {
   bold: ['**', '**'],
   italic: ['*', '*'],
@@ -25,7 +35,7 @@ for (let i = 1; i <= 6; i++) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function decorateTableText(option: any) {
+function decorateTableText(option: Record<string,any>) {
   const { row = 2, col = 2 } = option;
   const rowHeader = ['|'];
   const rowData = ['|'];
@@ -119,13 +129,18 @@ function getDecorated(target: string, type: string, option?: any): Decorated {
         newBlock: true,
       };
     case 'image':
-      return {
-        text: `![${target || option.target}](${option.imageUrl || ''})`,
-        selection: {
-          start: 2,
-          end: target.length + 2,
-        },
-      };
+        // eslint-disable-next-line no-case-declarations
+        let imageText = `![${target || option.target}](${option.imageUrl || ''})`;
+        if (option.classNames) {
+          imageText = addClassNames(imageText, option.classNames);
+        }
+        return {
+          text: imageText,
+          selection: {
+            start: 2,
+            end: (target || option.target).length + 2,
+          },
+        };
     case 'link':
       return {
         text: `[${target || option.target}](${option.linkUrl || ''})`,
