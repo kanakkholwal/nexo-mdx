@@ -20,6 +20,7 @@ import PinToolBar from './plugins/pinToolBar';
 import { PluginComponent } from './plugins/Plugin';
 import TabInsert from './plugins/tabInsert';
 import Table from './plugins/table';
+import type { PluginProps } from './plugins/Plugin';
 
 
 Editor.use(Header);
@@ -45,6 +46,7 @@ Editor.use(PinToolBar);
 export { PluginComponent };
 
 
+export type { PluginProps };
   export { default as getDecorated } from './utils/decorate';
 
 export const Plugins = {

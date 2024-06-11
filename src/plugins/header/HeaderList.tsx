@@ -4,6 +4,10 @@ import {
 import { Heading1, Heading2, Heading3, Heading4, Heading5, Heading6 } from "lucide-react";
 import * as React from 'react';
 
+
+const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const HEADING_ICONS = [Heading1, Heading2, Heading3, Heading4, Heading5, Heading6];
+
 interface HeaderListProps {
   onSelectHeader?: (header: string) => void;
 }
@@ -18,12 +22,11 @@ class HeaderList extends React.Component<HeaderListProps> {
 
   render() {
     return (<>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h1')}><Heading1 className="h-4" /> Heading 1</DropdownMenuItem>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h2')}><Heading2 className="h-4" /> Heading 2</DropdownMenuItem>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h3')}><Heading3 className="h-4" /> Heading 3</DropdownMenuItem>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h4')}><Heading4 className="h-4" /> Heading 4</DropdownMenuItem>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h5')}><Heading5 className="h-4" /> Heading 5</DropdownMenuItem>
-      <DropdownMenuItem onClick={this.handleHeader.bind(this, 'h6')}><Heading6 className="h-4" /> Heading 6</DropdownMenuItem>
+      {HEADINGS.map((header, index) => {
+        return <DropdownMenuItem key={index} onClick={this.handleHeader.bind(this, header)} className="font-medium font-gray-500">
+          {React.createElement(HEADING_ICONS[index], { className: 'h-4' })} Heading {index + 1}
+        </DropdownMenuItem>
+      })}
     </>);
   }
 }

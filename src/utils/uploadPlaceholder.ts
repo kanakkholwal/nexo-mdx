@@ -1,11 +1,12 @@
-import { v4 as uuid } from 'uuid';
+import { nanoid } from 'nanoid';
 import { UploadFunc } from '../share/var';
 import getDecorated from './decorate';
 import { isPromise } from './tool';
 
 function getUploadPlaceholder(file: File, onImageUpload: UploadFunc) {
-  const placeholder = getDecorated('', 'image', {
-    target: `Uploading_${uuid()}`,
+  const placeholderText = `Uploading_${nanoid()}`;
+  const placeholder = getDecorated(placeholderText, 'image', {
+    target: placeholderText,
     imageUrl: '',
   }).text;
   const uploaded = new Promise((resolve: (url: string) => void) => {
@@ -15,13 +16,13 @@ function getUploadPlaceholder(file: File, onImageUpload: UploadFunc) {
         console.warn('Deprecated: onImageUpload should return a Promise, callback will be removed in future');
       }
       resolve(
-        getDecorated('', 'image', {
+        getDecorated(file.name, 'image', {
           target: file.name,
           imageUrl: url,
         }).text,
       );
     };
-    // 兼容回调和Promise
+    // Upload Promise
     const upload = onImageUpload(file, handleUploaded);
     if (isPromise(upload)) {
       isCallback = false;

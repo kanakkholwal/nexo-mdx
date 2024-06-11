@@ -1,5 +1,10 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import i18n from '@/i18n';
 import { isPromise } from '@/utils/tool';
 import getUploadPlaceholder from '@/utils/uploadPlaceholder';
@@ -7,11 +12,7 @@ import * as React from 'react';
 import { PluginComponent, PluginProps } from '../Plugin';
 import InputFile from './inputFile';
 
-interface State {
-  show: boolean;
-}
-
-export default class Image extends PluginComponent<State> {
+export default class Image extends PluginComponent {
   static pluginName = 'image';
 
   private inputFile: React.RefObject<InputFile>;
@@ -24,9 +25,7 @@ export default class Image extends PluginComponent<State> {
     this.handleCustomImageUpload = this.handleCustomImageUpload.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
 
-    this.state = {
-      show: false,
-    };
+
   }
 
   private handleImageUpload() {
@@ -48,7 +47,7 @@ export default class Image extends PluginComponent<State> {
     }
   }
 
-  private handleCustomImageUpload(e:  React.MouseEvent<HTMLButtonElement>) {
+  private handleCustomImageUpload(e: React.MouseEvent<HTMLButtonElement>) {
     const { onCustomImageUpload } = this.editorConfig;
     if (onCustomImageUpload) {
       const res = onCustomImageUpload.call(this, e);
@@ -71,17 +70,19 @@ export default class Image extends PluginComponent<State> {
       <Button size="icon_sm" variant="ghost" className="button button-type-image" title={i18n.get('btnImage')} onClick={this.handleCustomImageUpload}>
         <Icon type="image" />
       </Button>
-    ) : (
-      <Button
-        size="icon_sm" variant="ghost"
-        className="button button-type-image"
-        title={i18n.get('btnImage')}
-        onClick={this.handleImageUpload}
-        style={{ position: 'relative' }}
-      >
-        <Icon type="image" />
+    ) : (<Popover>
+      <PopoverTrigger asChild>
+        <Button
+          size="icon_sm" variant="ghost"
+          className="button button-type-image"
+          title={i18n.get('btnImage')}
+        >
+          <Icon type="image" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="space-y-4">
         <InputFile
-          accept={this.editorConfig.imageAccept || ''}
+          accept={this.editorConfig.imageAccept || 'image/*'}
           ref={this.inputFile}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.persist();
@@ -90,7 +91,10 @@ export default class Image extends PluginComponent<State> {
             }
           }}
         />
-      </Button>
+        <Button size="sm" variant="default_light" className="mx-auto" onClick={this.handleImageUpload}>Insert</Button>
+      </PopoverContent>
+    </Popover>
+
     );
   }
 }

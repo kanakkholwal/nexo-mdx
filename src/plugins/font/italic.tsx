@@ -33,12 +33,8 @@ export default class FontItalic extends PluginComponent {
 
   render() {
     return (
-      <Button
-        size="icon_sm" variant="ghost"
-        className="button button-type-italic"
-        title={i18n.get('btnItalic')}
-        onClick={() => this.editor.insertMarkdown('italic')}
-      >
+      <Button size="icon_sm" variant="ghost" className="button button-type-italic"
+        title={i18n.get('btnItalic')}  onClick={() => this.editor.insertMarkdown('italic')} >
         <Icon type="italic" />
       </Button>
     );

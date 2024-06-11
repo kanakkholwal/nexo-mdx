@@ -1,10 +1,16 @@
 {
   "name": "nexo-mdx",
-  "version": "0.5.4",
+  "version": "0.5.7",
   "type": "module",
+  "main": "dist/nexo-mdx.umd.js",
+  "module": "dist/nexo-mdx.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -18,11 +24,9 @@
     "eventemitter3": "^5.0.1",
     "lucide-react": "^0.390.0",
     "markdown-to-jsx": "^7.4.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "nanoid": "^5.0.7",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "uuid": "^10.0.0"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
@@ -40,7 +44,13 @@
     "prettier": "^3.3.1",
     "prettier-plugin-tailwindcss": "^0.6.2",
     "tailwindcss": "^3.4.4",
+    "terser": "^5.31.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-dts": "^3.9.1"
   }
 }

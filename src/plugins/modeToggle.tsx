@@ -69,7 +69,9 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
   }
 
   render() {
-      const display = this.getDisplayInfo();
+    const display = this.getDisplayInfo();
+    const isRenderAvailable = !!this.editor.props.renderHtml?.(this.editor.getMdValue())
+    if (isRenderAvailable) {
       return (
         <Button
           size="icon_sm" variant="ghost"
@@ -81,6 +83,8 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
         </Button>
       );
     }
+    return null;
+  }
 
 }
 

@@ -1,6 +1,6 @@
 # Nexo MDX Editor
 
-- A light-weight Markdown editor of React component
+- A Markdown editor of React component
 - Supports TypeScript
 - Support native textarea accessability in form
 - Full markdown support

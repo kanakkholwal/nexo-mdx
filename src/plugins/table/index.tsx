@@ -64,7 +64,7 @@ export default class Table extends PluginComponent<State, Props> {
           <Icon type="grid" />
         </Button>
         </PopoverTrigger>
-        <PopoverContent className='max-w-36'>
+        <PopoverContent className='max-w-[40px]' forceMount align='center'>
           <TableList
             visibility={this.state.show}
             maxRow={config.maxRow}

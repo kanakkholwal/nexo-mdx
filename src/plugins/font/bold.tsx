@@ -33,12 +33,8 @@ export default class FontBold extends PluginComponent {
 
   render() {
     return (
-      <Button
-        size="icon_sm" variant="ghost"
-        className="button button-type-bold"
-        title={i18n.get('btnBold')}
-        onClick={() => this.editor.insertMarkdown('bold')}
-      >
+      <Button size="icon_sm" variant="ghost"  className="button button-type-bold"
+        title={i18n.get('btnBold')} onClick={() => this.editor.insertMarkdown('bold')}>
         <Icon type="bold" />
       </Button>
     );

@@ -1,4 +1,6 @@
 // TableList
+import { Input } from '@/components/ui/input';
+import { PluginProps } from '@/plugins/Plugin';
 import * as React from 'react';
 
 interface InputFileProps {
@@ -6,14 +8,14 @@ interface InputFileProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-class InputFile extends React.Component<InputFileProps, any> {
+class InputFile extends React.Component<InputFileProps, PluginProps> {
   private timerId?: number;
 
   private locked: boolean;
 
   private input: React.RefObject<HTMLInputElement>;
 
-  constructor(props: any) {
+  constructor(props: InputFileProps & PluginProps) {
     super(props);
     this.timerId = undefined;
     this.locked = false;
@@ -45,19 +47,11 @@ class InputFile extends React.Component<InputFileProps, any> {
 
   render() {
     return (
-      <input
+      <Input
         type="file"
+        className='h-10'
         ref={this.input}
         accept={this.props.accept}
-        style={{
-          position: 'absolute',
-          zIndex: -1,
-          left: 0,
-          top: 0,
-          width: 0,
-          height: 0,
-          opacity: 0,
-        }}
         onChange={this.props.onChange}
       />
     );

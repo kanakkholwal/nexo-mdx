@@ -9,24 +9,19 @@ import getDecorated from '@/utils/decorate';
 import mergeConfig from '@/utils/mergeConfig';
 import { getLineAndCol, isKeyMatch } from '@/utils/tool';
 import getUploadPlaceholder from '@/utils/uploadPlaceholder';
-import MarkdownView from "markdown-to-jsx";
+import { nanoid } from 'nanoid';
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
+
 import defaultConfig from './defaultConfig';
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Plugin = { comp: any; config: any };
 
-interface EditorProps extends EditorConfig {
-  id?: string;
-  defaultValue?: string;
+type TextAreaProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'value'>;
+
+interface EditorProps extends EditorConfig, TextAreaProps {
   value?: string;
-  style?: React.CSSProperties;
-  autoFocus?: boolean;
-  placeholder?: string;
-  readOnly?: boolean;
-  className?: string;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   config?: any;
   plugins?: string[];
   // Configs
@@ -36,11 +31,11 @@ interface EditorProps extends EditorConfig {
   ) => void;
   onFocus?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onScroll?: (e: React.UIEvent<HTMLTextAreaElement | HTMLDivElement>, type: 'md' | 'html') => void;
+  renderHtml?: (md: string) => React.ReactNode | null;
 }
 
 interface EditorState {
-  value: string;
+  mdText: string;
   pinned: boolean;
   plugins: { [x: string]: React.ReactElement[] };
   view?: "preview" | "edit";
@@ -54,7 +49,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {any} comp Plugin component
    * @param {any} config Other configs
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static use(comp: any, config: any = {}) {
     // Check for duplicate plugins
     for (let i = 0; i < Editor.plugins.length; i++) {
@@ -70,7 +65,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * Unregister plugin
    * @param {any} comp Plugin component
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static unuse(comp: any) {
     for (let i = 0; i < Editor.plugins.length; i++) {
       if (Editor.plugins[i].comp === comp) {
@@ -120,8 +115,8 @@ class Editor extends React.Component<EditorProps, EditorState> {
     this.config = mergeConfig(defaultConfig, this.props.config, this.props);
 
     this.state = {
-      value: (this.props.value || this.props.defaultValue || '').replace(/↵/g, '\n'),
-      view:  "edit",
+      mdText: (this.props.value || this.props.defaultValue as string || '').replace(/↵/g, '\n'),
+      view: "edit",
       pinned: false,
       plugins: this.getPlugins(),
     };
@@ -152,15 +147,15 @@ class Editor extends React.Component<EditorProps, EditorState> {
   }
 
   componentDidUpdate(prevProps: EditorProps) {
-    if (typeof this.props.value !== 'undefined' && this.props.value !== this.state.value) {
+    if (typeof this.props.value !== 'undefined' && this.props.value !== this.state.mdText) {
       let { value } = this.props;
       if (typeof value !== 'string') {
         value = String(value).toString();
       }
       value = value.replace(/↵/g, '\n');
-      if (this.state.value !== value) {
+      if (this.state.mdText !== value) {
         this.setState({
-          value: value,
+          mdText: value,
         });
       }
     }
@@ -220,7 +215,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
       if (typeof result[it.comp.align] === 'undefined') {
         result[it.comp.align] = [];
       }
-      const key = it.comp.pluginName === 'divider' ? uuid() : it.comp.pluginName;
+      const key = it.comp.pluginName === 'divider' ? nanoid() : it.comp.pluginName;
       result[it.comp.align].push(
         React.createElement(it.comp, {
           editor: this,
@@ -408,7 +403,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param type
    * @param option
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   insertMarkdown(type: string, option: any = {}) {
     const curSelection = this.getSelection();
     let decorateOption = option ? { ...option } : {};
@@ -422,8 +417,10 @@ class Editor extends React.Component<EditorProps, EditorState> {
     if (type === 'link') {
       decorateOption = {
         ...decorateOption,
-        linkUrl: this.config.linkUrl,
+        target: option.target || curSelection.text || '',
+        linkUrl: option.linkUrl || this.config.linkUrl,
       };
+      
     }
     if (type === 'tab' && curSelection.start !== curSelection.end) {
       const curLineStart = this.getMdValue()
@@ -459,7 +456,8 @@ class Editor extends React.Component<EditorProps, EditorState> {
       }
     }
     this.insertText(text, true, selection);
-    this.handleFocus({} as React.FocusEvent<HTMLTextAreaElement>);
+    this.nodeMdText.current?.focus();
+
   }
 
   /**
@@ -477,15 +475,15 @@ class Editor extends React.Component<EditorProps, EditorState> {
 
   /**
    * Insert value
-   * @param {string} value The value will be insert
+   * @param {string} text The text will be insert
    * @param {boolean} replaceSelected Replace selected value
    * @param {Selection} newSelection New selection
    */
   insertText(text: string = '', replaceSelected: boolean = false, newSelection?: { start: number; end: number }) {
-    const { value } = this.state;
+    const { mdText } = this.state;
     const selection = this.getSelection();
-    const beforeContent = value.slice(0, selection.start);
-    const afterContent = value.slice(replaceSelected ? selection.end : selection.start, value.length);
+    const beforeContent = mdText.slice(0, selection.start);
+    const afterContent = mdText.slice(replaceSelected ? selection.end : selection.start, mdText.length);
 
     this.setText(
       beforeContent + text + afterContent,
@@ -503,17 +501,18 @@ class Editor extends React.Component<EditorProps, EditorState> {
   }
 
   /**
-   * Set value, and trigger onChange event
-   * @param {string} value
+   * Set text, and trigger onChange event
+   * @param {string} text
    * @param {any} event
    */
   setText(text: string = '', event?: React.ChangeEvent<HTMLTextAreaElement>, newSelection?: { start: number; end: number }) {
     const { onChangeTrigger = 'both' } = this.config;
     const value = text.replace(/↵/g, '\n');
-    if (this.state.value === value) {
+    if (this.state.mdText === value) {
       return;
     }
-    this.setState({ value });
+    this.setState({ mdText: value });
+    this.props.renderHtml?.(value);
     if (this.props.onChange && (onChangeTrigger === 'both' || onChangeTrigger === 'beforeRender')) {
       this.props.onChange(value, event);
     }
@@ -531,7 +530,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @return {string}
    */
   getMdValue(): string {
-    return this.state.value;
+    return this.state.mdText;
   }
 
 
@@ -570,7 +569,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
   }
 
   private handleKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
-    // 遍历监听数组，找找有没有被监听
+    // Traverse the listening array to see if it is being monitored
     for (const it of this.keyboardListeners) {
       if (isKeyMatch(e, it)) {
         e.preventDefault();
@@ -621,7 +620,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {EditorEvent} event Event type
    * @param {any} cb Callback
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   off(event: EditorEvent, cb: any) {
     const eventType = this.getEventType(event);
     if (eventType) {
@@ -634,7 +633,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * Can show or hide: editor, preview, menu
    * @param {object} to
    */
-  setView(to:"preview" | "edit") {
+  setView(to: "preview" | "edit") {
 
     this.setState(
       {
@@ -651,7 +650,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @return {object}
    */
   getView() {
-    return this.state.view
+    return this.state.view || "edit";
   }
 
   /**
@@ -673,7 +672,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {string} name API name
    * @param {any} cb callback
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerPluginApi(name: string, cb: any) {
     this.pluginApis.set(name, cb);
   }
@@ -688,7 +687,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
    * @param {any} others arguments
    * @returns {any}
    */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   callPluginApi<T>(name: string, ...others: any): T {
     const handler = this.pluginApis.get(name);
     if (!handler) {
@@ -743,22 +742,29 @@ class Editor extends React.Component<EditorProps, EditorState> {
   }
 
   render() {
-    const { value, view } = this.state;
+    const { mdText, view } = this.state;
     const getPluginAt = (at: string) => this.state.plugins[at] || [];
+    const {
+      renderHtml,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onImageUpload,
+      ...props
+    } = this.props;
 
     return (
-      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
+      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} ref={this.nodeMdPreviewWrapper} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
         <ToolBar isPinned={this.isPinned()} isPreview={view === "preview"} left={getPluginAt('left')} right={getPluginAt('right')} />
         <div>
           {view === "edit" ? <div className="editor-container" aria-label='editor-container'>
             <Textarea
+              {...props}
+              name={this.props.name || "nexo-mdx-editor"}
               id={this.props.id || "nexo-mdx-editor"}
               ref={this.nodeMdText}
-              name={this.props.name || "nexo-mdx-editor"}
               autoFocus={this.props.autoFocus || false}
               placeholder={this.props.placeholder || "Write some cool markdown..."}
               readOnly={this.props.readOnly}
-              value={value}
+              value={mdText}
               className={`section-container input ${this.config.markdownClass || ''}`}
               wrap="hard"
               onChange={this.handleChange}
@@ -770,9 +776,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
               onBlur={this.handleBlur}
             />
           </div> : <div className="p-3 preview-container" id={"nexo-mdx-preview"} aria-label='preview-container'>
-            <MarkdownView>
-              {this.state.value}
-            </MarkdownView>
+              {renderHtml?.(mdText) ? renderHtml(mdText)! : null}
           </div>}
         </div>
       </div>

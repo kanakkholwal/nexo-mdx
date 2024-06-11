@@ -34,11 +34,7 @@ export default class FontStrikethrough extends PluginComponent {
   render() {
     return (
       <Button
-        size="icon_sm" variant="ghost"
-        className="button button-type-strikethrough"
-        title={i18n.get('btnStrikethrough')}
-        onClick={() => this.editor.insertMarkdown('strikethrough')}
-      >
+        size="icon_sm" variant="ghost" className="button button-type-strikethrough"  title={i18n.get('btnStrikethrough')} onClick={() => this.editor.insertMarkdown('strikethrough')} >
         <Icon type="strikethrough" />
       </Button>
     );

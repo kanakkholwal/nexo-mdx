@@ -24,6 +24,7 @@ for (let i = 1; i <= 6; i++) {
   SIMPLE_DECORATOR[`h${i}`] = [`\n${repeat('#', i)} `, '\n'];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function decorateTableText(option: any) {
   const { row = 2, col = 2 } = option;
   const rowHeader = ['|'];
@@ -74,12 +75,13 @@ function createTextDecorated(text: string, newBlock?: boolean): Decorated {
 }
 
 /**
- * 获取装饰后的Markdown文本
- * @param target 原文字
- * @param type 装饰类型
- * @param option 附加参数
+ * Get the decorated Markdown text
+ * @param target Original text
+ * @param type Decoration Type
+ * @param option Additional parameters
  * @returns {Decorated}
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDecorated(target: string, type: string, option?: any): Decorated {
   if (typeof SIMPLE_DECORATOR[type] !== 'undefined') {
     return {
@@ -92,8 +94,11 @@ function getDecorated(target: string, type: string, option?: any): Decorated {
   }
   switch (type) {
     case 'tab':
+      // eslint-disable-next-line no-case-declarations
       const inputValue = option.tabMapValue === 1 ? '\t' : ' '.repeat(option.tabMapValue);
+      // eslint-disable-next-line no-case-declarations
       const newSelectedText = inputValue + target.replace(/\n/g, `\n${inputValue}`);
+      // eslint-disable-next-line no-case-declarations
       const lineBreakCount = target.includes('\n') ? target.match(/\n/g)!.length : 0;
       return {
         text: newSelectedText,
@@ -123,7 +128,7 @@ function getDecorated(target: string, type: string, option?: any): Decorated {
       };
     case 'link':
       return {
-        text: `[${target}](${option.linkUrl || ''})`,
+        text: `[${target || option.target}](${option.linkUrl || ''})`,
         selection: {
           start: 1,
           end: target.length + 1,
