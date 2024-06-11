@@ -29,8 +29,9 @@ import NexoMdxEditor from 'nexo-mdx';
 import React from 'react';
 
 export default function MDXEditor(){
-    const [mdValue,setMdValue] = React.useState("")
-    return <NexoMdxEditor value={mdValue} onChange={(value,event) => setMdValue(value)} />
+    const [mdValue,setMdValue] = React.useState("");
+
+    return <NexoMdxEditor value={mdValue} onChange={(value,_) => setMdValue(value)} />
 }
 
 ```
