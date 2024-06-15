@@ -7,8 +7,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from '@/plugins/Plugin';
-import { KeyboardEventListener } from '@/share/var';
+import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
+import { KeyboardEventListener } from 'editor/share/var';
 
 interface State {
   linkUrl: string;
@@ -16,6 +16,7 @@ interface State {
 }
 export default class Link extends PluginComponent<State> {
   static pluginName = 'link';
+  static align = 'left';
 
   private handleKeyboard: KeyboardEventListener;
 

@@ -27,7 +27,13 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ]
+      ],
+      "editor/*": [
+        "./src/editor/*"
+      ],
+      "view/*": [
+        "./src/view/*"
+      ],
     },
     "rootDir": "./src",
     "outDir": "dist",

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import Icon from '../components/Icon';
-import i18n from '../i18n';
+import Icon from '@/components/Icon';
+import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from './Plugin';
 
 interface ModeToggleState {

@@ -1,4 +1,4 @@
-import { globalEmitter } from '@/share/emitter';
+import { globalEmitter } from 'editor/share/emitter';
 import enUS from './lang/en-US';
 
 type LangItem = { [x: string]: string };

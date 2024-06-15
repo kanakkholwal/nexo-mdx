@@ -1,6 +1,6 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
-import i18n from '../i18n';
+import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from './Plugin';
 
 interface PinToolBarState {

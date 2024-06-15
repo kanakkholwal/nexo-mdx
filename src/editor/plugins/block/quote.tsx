@@ -5,6 +5,7 @@ import { PluginComponent } from '../Plugin';
 
 export default class BlockQuote extends PluginComponent {
   static pluginName = 'block-quote';
+  static align = 'left';
 
   render() {
     return (

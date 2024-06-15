@@ -9,7 +9,7 @@ interface ToolBarProps {
 
 export default function ToolBar(props: ToolBarProps) {
   return (
-    <div className={`flex flex-wrap gap-4 border rounded-xl p-3 bg-white/20 backdrop-blur-xl ${props.isPinned ? 'sticky top-5 left-0 right-0' : 'relative'}`}>
+    <div className={`flex flex-wrap gap-4 border rounded-xl p-3 bg-slate-200/80 dark:bg-slate-800/40 rounded-2xl border border-border dark:border-slate-100/10 backdrop-blur border-opacity-15 ${props.isPinned ? 'sticky top-5 left-0 right-0' : 'relative'}`}>
       <div className="inline-flex gap-2 items-center justify-start flex-grow  flex-wrap ">
         {props.isPreview ? (<p className="text-sm text-gray-700 font-semibold inline-flex items-center gap-1">
           <Icon type="visibility" className="h-4 w-4 inline-block" />

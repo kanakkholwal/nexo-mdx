@@ -12,8 +12,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from '@/plugins/Plugin';
-import { KeyboardEventListener } from '@/share/var';
+import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
+import { KeyboardEventListener } from 'editor/share/var';
 import TabMapList from './TabMapList';
 
 /**
@@ -27,7 +27,8 @@ interface TabInsertState {
 
 export default class TabInsert extends PluginComponent<TabInsertState> {
   static pluginName = 'tab-insert';
-
+  static align = 'left';
+  
   static defaultConfig = {
     tabMapValue: 1,
   };

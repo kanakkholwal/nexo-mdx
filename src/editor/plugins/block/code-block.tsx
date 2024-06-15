@@ -5,6 +5,7 @@ import { PluginComponent } from '../Plugin';
 
 export default class BlockCodeBlock extends PluginComponent {
   static pluginName = 'block-code-block';
+  static align = 'left';
 
   render() {
     return (

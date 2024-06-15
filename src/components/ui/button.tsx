@@ -87,6 +87,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <Comp
                 className={cn(buttonVariants({ variant, size, className, transition, rounded, width }))}
                 ref={ref}
+                type="button"
                 {...props} />
         )
     }

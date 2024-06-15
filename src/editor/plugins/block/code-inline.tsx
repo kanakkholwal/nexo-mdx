@@ -5,6 +5,7 @@ import { PluginComponent } from '../Plugin';
 
 export default class BlockCodeInline extends PluginComponent {
   static pluginName = 'block-code-inline';
+  static align = 'left';
 
   render() {
     return (

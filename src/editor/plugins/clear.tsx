@@ -1,10 +1,11 @@
+import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
-import Icon from '../components/Icon';
-import i18n from '../i18n';
+import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from './Plugin';
 
 export default class Clear extends PluginComponent {
   static pluginName = 'clear';
+  static align = 'left';
 
   constructor(props: PluginProps) {
     super(props);

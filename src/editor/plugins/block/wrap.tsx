@@ -5,6 +5,7 @@ import { PluginComponent } from '../Plugin';
 
 export default class BlockWrap extends PluginComponent {
   static pluginName = 'block-wrap';
+  static align = 'left';
 
   render() {
     return (

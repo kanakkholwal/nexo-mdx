@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import * as React from 'react';
 
 interface TableListProps {
@@ -90,7 +91,7 @@ class TableList extends React.Component<TableListProps, TableListState> {
       <ul className="flex gap-1 flex-wrap w-full" style={this.calcWrapStyle()}>
         {this.state.list.map((row, i) => row.map((col, j) => (
           <li
-            className={`bg-gray-200 rounded h-4 w-5 ${col === 1 ? 'bg-gray-400' : ''}`}
+            className={cn(`bg-gray-200 rounded h-4 w-4`,col === 1 ? 'bg-gray-400' :'')}
             key={`${i}-${j}`}
             style={this.calcItemStyle(i, j)}
             onMouseOver={this.handleHover.bind(this, i, j)}

@@ -6,7 +6,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from '@/plugins/Plugin';
+import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
 import TableList from './table';
 
 interface State {
@@ -22,6 +22,7 @@ interface Props extends PluginProps {
 
 export default class Table extends PluginComponent<State, Props> {
   static pluginName = 'table';
+  static align = 'left';
 
   static defaultConfig = {
     maxRow: 6,
@@ -55,23 +56,23 @@ export default class Table extends PluginComponent<State, Props> {
     const config = this.editorConfig.table || this.props.config;
 
     return (<Popover>
-        <PopoverTrigger asChild> 
-          <Button
+      <PopoverTrigger asChild>
+        <Button
           size="icon_sm" variant="ghost"
           className="button button-type-table"
           title={i18n.get('btnTable')}
         >
           <Icon type="grid" />
         </Button>
-        </PopoverTrigger>
-        <PopoverContent className='max-w-[40px]' forceMount align='center'>
-          <TableList
-            visibility={this.state.show}
-            maxRow={config.maxRow}
-            maxCol={config.maxCol}
-            onSetTable={(option) => this.editor.insertMarkdown('table', option)}
-          />
-        </PopoverContent>
-      </Popover>);
+      </PopoverTrigger>
+      <PopoverContent className='max-w-[40px]' forceMount align='center'>
+        <TableList
+          visibility={this.state.show}
+          maxRow={config.maxRow}
+          maxCol={config.maxCol}
+          onSetTable={(option) => this.editor.insertMarkdown('table', option)}
+        />
+      </PopoverContent>
+    </Popover>);
   }
 }

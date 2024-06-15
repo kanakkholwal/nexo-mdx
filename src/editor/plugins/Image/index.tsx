@@ -6,10 +6,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { isPromise } from '@/utils/tool';
-import getUploadPlaceholder from '@/utils/uploadPlaceholder';
+import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
+import { isPromise } from 'editor/utils/tool';
+import getUploadPlaceholder from 'editor/utils/uploadPlaceholder';
 import * as React from 'react';
-import { PluginComponent, PluginProps } from '../Plugin';
 import InputFile from './inputFile';
 
 export default class Image extends PluginComponent {

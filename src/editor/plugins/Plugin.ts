@@ -1,6 +1,6 @@
+import type Editor from 'editor/editor';
+import { EditorConfig } from 'editor/share/var';
 import * as React from 'react';
-import type Editor from '../editor';
-import { EditorConfig } from '../share/var';
 
 export interface PluginProps<ConfigType = Record<string, unknown>> {
   editor: Editor;
