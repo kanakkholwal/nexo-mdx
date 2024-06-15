@@ -15,6 +15,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@editor": path.resolve(__dirname, "./src/editor"),
+      "@view": path.resolve(__dirname, "./src/view"),
     },
   },
   build: {

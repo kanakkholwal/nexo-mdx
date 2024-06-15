@@ -1,6 +1,6 @@
 // TableList
 import { Input } from '@/components/ui/input';
-import { PluginProps } from '@/plugins/Plugin';
+import { PluginProps } from '@editor/plugins/Plugin';
 import * as React from 'react';
 
 interface InputFileProps {

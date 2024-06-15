@@ -7,13 +7,13 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
-import { KeyboardEventListener } from 'editor/share/var';
+import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
+import { KeyboardEventListener } from '@editor/share/var';
 import TabMapList from './TabMapList';
 
 /**

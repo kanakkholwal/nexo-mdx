@@ -1,4 +1,4 @@
-import { EditorConfig } from '../share/var';
+import { EditorConfig } from '@editor/share/var';
 
 const defaultConfig: EditorConfig = {
   theme: 'default',

@@ -1,14 +1,14 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
-import { isPromise } from 'editor/utils/tool';
-import getUploadPlaceholder from 'editor/utils/uploadPlaceholder';
+import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
+import { isPromise } from '@editor/utils/tool';
+import getUploadPlaceholder from '@editor/utils/uploadPlaceholder';
 import * as React from 'react';
 import InputFile from './inputFile';
 

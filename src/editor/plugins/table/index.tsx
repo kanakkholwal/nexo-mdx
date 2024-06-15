@@ -1,12 +1,12 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
-import { PluginComponent, PluginProps } from 'editor/plugins/Plugin';
+import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
 import TableList from './table';
 
 interface State {

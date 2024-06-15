@@ -1,4 +1,4 @@
-import { KeyboardEventCondition } from 'editor/share/var';
+import { KeyboardEventCondition } from '@editor/share/var';
 
 export function deepClone<T>(obj: T): T {
   if (!obj || typeof obj !== 'object') {

@@ -1,7 +1,7 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import i18n from '@/i18n';
-import { KeyboardEventListener } from '@/share/var';
+import { KeyboardEventListener } from '@editor/share/var';
 import { PluginComponent, PluginProps } from '../Plugin';
 
 export default class FontBold extends PluginComponent {
