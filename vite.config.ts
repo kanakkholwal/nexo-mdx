@@ -36,6 +36,5 @@ export default defineConfig({
       },
     },
     minify: 'terser', // Use Terser for minification
-    sourcemap: true,  // Generate source maps for better debugging
   }
 })
