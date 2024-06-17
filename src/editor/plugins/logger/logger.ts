@@ -24,7 +24,8 @@ class Logger {
 
   push(val: string) {
     const result = this.record.push(val);
-    // 如果超过了最长限制，把之前的清理掉，避免造成内存浪费
+    // If the maximum limit is exceeded, clear the previous ones to avoid wasting memory.
+
     while (this.record.length > this.maxSize) {
       this.record.shift();
     }
@@ -37,7 +38,7 @@ class Logger {
 
   getLast(): string {
     const { length } = this.record;
-    return this.record[length - 1];
+    return this.record[length - 1]!;
   }
 
   undo(skipText?: string) {
@@ -45,19 +46,21 @@ class Logger {
     if (typeof current === 'undefined') {
       return this.initValue;
     }
-    // 如果最上面的和现在的不一样，那就不需要再pop一次
+    // If the top one is different from the current one, then there is no need to pop it again
     if (current !== skipText) {
       this.recycle.push(current);
       return current;
     }
-    // 否则的话，最顶上的一个是当前状态，所以要pop两次才能得到之前的结果
+    // Otherwise, the top one is the current state, so you have to pop twice to get the previous result.
+
     const last = this.record.pop();
     if (typeof last === 'undefined') {
-      // 已经没有更老的记录了，把初始值给出去吧
+      //There are no older records. Give the initial value.
+
       this.recycle.push(current);
       return this.initValue;
     }
-    // last 才是真正的上一步
+    // last That's the real next step
     this.recycle.push(current);
     return last;
   }

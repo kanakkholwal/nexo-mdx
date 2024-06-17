@@ -84,10 +84,10 @@ export function getLineAndCol(text: string, pos: number): LineAndColResult {
   const lines = text.split('\n');
   const beforeLines = text.slice(0, pos).split('\n');
   const line = beforeLines.length;
-  const col = beforeLines[beforeLines.length - 1].length;
-  const curLine = lines[line - 1];
-  const prevLine = line > 1 ? lines[line - 2] : null;
-  const nextLine = line < lines.length ? lines[line] : null;
+  const col = beforeLines[beforeLines.length - 1]?.length || 0
+  const curLine = lines[line - 1]!
+  const prevLine:string = line > 1 ? lines[line - 2]! : "";
+  const nextLine:string = line < lines.length ? lines[line]! : "";
 
   return {
     line,

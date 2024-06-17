@@ -39,13 +39,13 @@ class InputFile extends React.Component<InputFileProps, PluginProps> {
     }, 200);
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     if (this.timerId) {
       window.clearTimeout(this.timerId);
     }
   }
 
-  render() {
+  override render() {
     return (
       <Input
         type="file"

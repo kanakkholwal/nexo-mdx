@@ -6,7 +6,7 @@ import { PluginComponent, PluginProps } from '../Plugin';
 import LoggerPlugin from './logger';
 
 export default class Logger extends PluginComponent {
-  static pluginName = 'logger';
+  static override pluginName = 'logger';
 
   private logger: LoggerPlugin;
 
@@ -83,7 +83,7 @@ export default class Logger extends PluginComponent {
     }, this.editorConfig.loggerInterval);
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     // 监听变化事件
     this.editor.on('change', this.handleChange);
     // 监听键盘事件
@@ -93,7 +93,7 @@ export default class Logger extends PluginComponent {
     this.forceUpdate();
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     if (this.timerId) {
       window.clearTimeout(this.timerId);
     }
@@ -110,7 +110,7 @@ export default class Logger extends PluginComponent {
     }
   }
 
-  render() {
+  override  render() {
     const hasUndo = this.logger.getUndoCount() > 1 || this.logger.initValue !== this.editor.getMdValue();
     const hasRedo = this.logger.getRedoCount() > 0;
     return (

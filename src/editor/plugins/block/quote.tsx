@@ -4,10 +4,10 @@ import i18n from '@/i18n';
 import { PluginComponent } from '../Plugin';
 
 export default class BlockQuote extends PluginComponent {
-  static pluginName = 'block-quote';
-  static align = 'left';
+  static override pluginName = 'block-quote';
+  static override align = 'left';
 
-  render() {
+  override render() {
     return (
       <Button
       size="icon_sm"

@@ -12,9 +12,9 @@ import HeaderList from './HeaderList';
 
 
 export default class Header extends PluginComponent {
-  static pluginName = 'header';
+  static override pluginName = 'header';
 
-  render() {
+  override render() {
     return <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button title={i18n.get('btnHeader')} className="button button-type-header" size="icon_sm" variant="ghost">

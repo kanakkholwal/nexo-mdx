@@ -16,13 +16,13 @@ class I18n {
     if (typeof window === 'undefined') {
       return;
     }
-    let locale = 'enUS';
+    let locale:string = 'enUS';
     // Detect language
     if (navigator.language) {
       const it = navigator.language.split('-');
-      locale = it[0];
+      locale = it?.[0] || "enUS"
       if (it.length !== 1) {
-        locale += it[it.length - 1].toUpperCase();
+        locale += it[it.length - 1]?.toUpperCase();
       }
     }
 
@@ -63,10 +63,12 @@ class I18n {
   }
 
   get(key: string, placeholders?: { [x: string]: string }) {
-    let str = this.langs[this.current][key] || '';
+    let str = this.langs[this.current]?.[key] || '';
     if (placeholders) {
       Object.keys(placeholders).forEach(k => {
-        str = str.replace(new RegExp(`\\{${k}\\}`, 'g'), placeholders[k]);
+        if (placeholders[k]) {
+          str = str.replace(new RegExp(`\\{${k}\\}`, 'g'), placeholders[k]!);
+        }
       });
     }
     return str;

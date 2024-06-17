@@ -4,10 +4,10 @@ import i18n from '@/i18n';
 import { PluginComponent } from '../Plugin';
 
 export default class BlockCodeBlock extends PluginComponent {
-  static pluginName = 'block-code-block';
-  static align = 'left';
+  static override pluginName = 'block-code-block';
+  static override align = 'left';
 
-  render() {
+  override render() {
     return (
       <Button
       size="icon_sm"

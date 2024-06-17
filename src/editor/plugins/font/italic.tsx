@@ -5,7 +5,7 @@ import { KeyboardEventListener } from '@editor/share/var';
 import { PluginComponent, PluginProps } from '../Plugin';
 
 export default class FontItalic extends PluginComponent {
-  static pluginName = 'font-italic';
+  static override pluginName = 'font-italic';
 
   private handleKeyboard: KeyboardEventListener;
 
@@ -21,17 +21,17 @@ export default class FontItalic extends PluginComponent {
     };
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     if (this.editorConfig.shortcuts) {
       this.editor.onKeyboard(this.handleKeyboard);
     }
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.offKeyboard(this.handleKeyboard);
   }
 
-  render() {
+  override render() {
     return (
       <Button size="icon_sm" variant="ghost" className="button button-type-italic"
         title={i18n.get('btnItalic')}  onClick={() => this.editor.insertMarkdown('italic')} >

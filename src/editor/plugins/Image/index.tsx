@@ -1,9 +1,9 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
@@ -13,7 +13,7 @@ import * as React from 'react';
 import InputFile from './inputFile';
 
 export default class Image extends PluginComponent {
-  static pluginName = 'image';
+  static override pluginName = 'image';
 
   private inputFile: React.RefObject<InputFile>;
 
@@ -64,7 +64,7 @@ export default class Image extends PluginComponent {
     }
   }
 
-  render() {
+  override render() {
     const isCustom = !!this.editorConfig.onCustomImageUpload;
     return isCustom ? (
       <Button size="icon_sm" variant="ghost" className="button button-type-image" title={i18n.get('btnImage')} onClick={this.handleCustomImageUpload}>
@@ -87,7 +87,7 @@ export default class Image extends PluginComponent {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.persist();
             if (e.target.files && e.target.files.length > 0) {
-              this.onImageChanged(e.target.files[0]);
+              this.onImageChanged(e.target.files[0]!);
             }
           }}
         />

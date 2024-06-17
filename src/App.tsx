@@ -12,6 +12,7 @@ import {
 import remarkRehype from 'remark-rehype';
 import { unified } from "unified";
 import Editor from "./editor";
+import React from 'react';
 
 
 const DEFAULT_MARKDOWN = `

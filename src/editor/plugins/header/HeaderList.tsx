@@ -20,11 +20,11 @@ class HeaderList extends React.Component<HeaderListProps> {
     }
   }
 
-  render() {
+  override render() {
     return (<>
       {HEADINGS.map((header, index) => {
         return <DropdownMenuItem key={index} onClick={this.handleHeader.bind(this, header)} className="font-medium font-gray-500">
-          {React.createElement(HEADING_ICONS[index], { className: 'h-4' })} Heading {index + 1}
+          {React.createElement(HEADING_ICONS[index]!, { className: 'h-4' })} Heading {index + 1}
         </DropdownMenuItem>
       })}
     </>);

@@ -95,10 +95,10 @@ function createTextDecorated(text: string, newBlock?: boolean): Decorated {
 function getDecorated(target: string, type: string, option?: any): Decorated {
   if (typeof SIMPLE_DECORATOR[type] !== 'undefined') {
     return {
-      text: `${SIMPLE_DECORATOR[type][0]}${target}${SIMPLE_DECORATOR[type][1]}`,
+      text: `${SIMPLE_DECORATOR[type]!?.[0]}${target}${SIMPLE_DECORATOR[type]!?.[1]}`,
       selection: {
-        start: SIMPLE_DECORATOR[type][0].length,
-        end: SIMPLE_DECORATOR[type][0].length + target.length,
+        start: SIMPLE_DECORATOR[type]!?.[0]?.length,
+        end: SIMPLE_DECORATOR[type]!?.[0]?.length + target.length,
       },
     };
   }

@@ -8,9 +8,9 @@ interface PinToolBarState {
 }
 
 export default class PinToolBar extends PluginComponent<PinToolBarState> {
-  static pluginName = 'pin-unpin';
+  static override pluginName = 'pin-unpin';
 
-  static align = 'right';
+  static override align = 'right';
 
   constructor(props: PluginProps) {
     super(props);
@@ -31,15 +31,15 @@ export default class PinToolBar extends PluginComponent<PinToolBarState> {
     this.setState({ pinned });
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     this.editor.on('toolbar_pin', this.handleChange);
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.off('toolbar_pin', this.handleChange);
   }
 
-  render() {
+  override render() {
     const { pinned } = this.state;
     return (
       <Button

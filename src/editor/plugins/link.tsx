@@ -15,8 +15,8 @@ interface State {
   target: string;
 }
 export default class Link extends PluginComponent<State> {
-  static pluginName = 'link';
-  static align = 'left';
+  static override pluginName = 'link';
+  static override align = 'left';
 
   private handleKeyboard: KeyboardEventListener;
 
@@ -38,17 +38,17 @@ export default class Link extends PluginComponent<State> {
     };
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     if (this.editorConfig.shortcuts) {
       this.editor.onKeyboard(this.handleKeyboard);
     }
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.offKeyboard(this.handleKeyboard);
   }
 
-  render() {
+  override render() {
     return (<Popover onOpenChange={(open) => {
       if (!open) {
         this.setState({

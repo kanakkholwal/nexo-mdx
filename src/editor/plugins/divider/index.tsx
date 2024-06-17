@@ -3,11 +3,11 @@ import { Button } from '@/components/ui/button';
 import { PluginComponent } from '../Plugin';
 
 export default class Divider extends PluginComponent {
-  static pluginName = 'divider';
-  static align = 'left';
+  static override pluginName = 'divider';
+  static override align = 'left';
 
-  render() {
-    return <Button size="sm" variant="ghost" className="nexo-mdx-divider">
+  override render() {
+    return <Button size="sm" variant="ghost" className="nexo-mdx-divider" onClick={() => this.editor.insertMarkdown('hr')}>
       <Icon type="divider" />
     </Button>
   }

@@ -21,10 +21,10 @@ interface Props extends PluginProps {
 }
 
 export default class Table extends PluginComponent<State, Props> {
-  static pluginName = 'table';
-  static align = 'left';
+  static override pluginName = 'table';
+  static override align = 'left';
 
-  static defaultConfig = {
+  static override defaultConfig = {
     maxRow: 6,
     maxCol: 6,
   };
@@ -52,7 +52,7 @@ export default class Table extends PluginComponent<State, Props> {
     });
   }
 
-  render() {
+  override render() {
     const config = this.editorConfig.table || this.props.config;
 
     return (<Popover>

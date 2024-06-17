@@ -52,7 +52,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
   static use(comp: Plugin["comp"], config: Plugin["config"] = {}) {
     // Check for duplicate plugins
     for (let i = 0; i < Editor.plugins.length; i++) {
-      if (Editor.plugins[i].comp === comp) {
+      if (Editor.plugins[i]!.comp === comp) {
         Editor.plugins.splice(i, 1, { comp, config });
         return;
       }
@@ -67,7 +67,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
 
   static unUse(comp: Plugin["comp"]) {
     for (let i = 0; i < Editor.plugins.length; i++) {
-      if (Editor.plugins[i].comp === comp) {
+      if (Editor.plugins[i]!.comp === comp) {
         Editor.plugins.splice(i, 1);
         return;
       }
@@ -134,17 +134,17 @@ class Editor extends React.Component<EditorProps, EditorState> {
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     globalEmitter.on(globalEmitter.EVENT_LANG_CHANGE, this.handleLocaleUpdate);
     // init i18n
     i18n.setUp();
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     globalEmitter.off(globalEmitter.EVENT_LANG_CHANGE, this.handleLocaleUpdate);
   }
 
-  componentDidUpdate(prevProps: EditorProps) {
+  override componentDidUpdate(prevProps: EditorProps) {
     if (typeof this.props.value !== 'undefined' && this.props.value !== this.state.mdText) {
       let { value } = this.props;
       if (typeof value !== 'string') {
@@ -214,7 +214,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
         result[it.comp.align] = [];
       }
       const key = it.comp.pluginName === 'divider' ? nanoid() : it.comp.pluginName;
-      result[it.comp.align].push(
+      result[it.comp!.align!]!.push(
         React.createElement(it.comp, {
           editor: this,
           editorConfig: this.config,
@@ -332,7 +332,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
           emptyCurrentLine();
           return;
         }
-        const toInsert = `${isOrderList[1]}${parseInt(isOrderList[2], 10) + 1}. `;
+        const toInsert = `${isOrderList[1]}${parseInt(isOrderList[2]!, 10) + 1}. `;
         addSymbol(toInsert);
         return;
       }
@@ -739,7 +739,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
     });
   }
 
-  render() {
+  override render() {
     const { mdText, view } = this.state;
     const getPluginAt = (at: string) => this.state.plugins[at] || [];
 

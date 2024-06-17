@@ -1,32 +1,52 @@
 {
+  "files": [
+    "src/index.ts",
+  ],
   "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "target": "ESNext",
     "module": "ESNext",
-    "skipLibCheck": true,
+    "useDefineForClassFields": true,
     "declaration": true,
-    "declarationDir": "dist/types",
-    "moduleResolution": "node",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "moduleResolution":"Bundler",
+    "noEmit": false,
     "strict": true,
+    "jsx": "react-jsx",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"],
       "@editor/*": ["./editor/*"],
-      "@view/*": ["./view/*"]
+      "@view/*": ["./view/*"],
     },
-    "rootDir": "./src",
-    "outDir": "dist"
+    "rootDir": "./src/"
   },
-  "include": ["src/index.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+
+  ],
+  "exclude": [
+    "node_modules",
+    "./src/App.tsx",
+    "./src/main.tsx",
+    "./src/vite-env.d.ts",
+  ]
 }

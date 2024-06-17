@@ -4,17 +4,17 @@ import i18n from '@/i18n';
 import { PluginComponent } from '../Plugin';
 
 export default class BlockWrap extends PluginComponent {
-  static pluginName = 'block-wrap';
-  static align = 'left';
+  static override pluginName = 'block-wrap';
+  static override align = 'left';
 
-  render() {
+  override render() {
     return (
       <Button
         size="icon_sm"
         variant="ghost"
         className="button button-type-wrap"
         title={i18n.get('btnLineBreak')}
-        onClick={() => this.editor.insertMarkdown('hr')}
+        onClick={() => this.editor.insertMarkdown('br')}
       >
         <Icon type="wrap" />
       </Button>

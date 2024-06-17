@@ -4,8 +4,8 @@ import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from './Plugin';
 
 export default class Clear extends PluginComponent {
-  static pluginName = 'clear';
-  static align = 'left';
+  static override pluginName = 'clear';
+  static override align = 'left';
 
   constructor(props: PluginProps) {
     super(props);
@@ -25,7 +25,7 @@ export default class Clear extends PluginComponent {
     }
   }
 
-  render() {
+  override render() {
     return (
       <Button size="icon_sm" variant="ghost" className="button button-type-clear" title={i18n.get('btnClear')} onClick={this.handleClick}>
         <Icon type="delete" />

@@ -78,7 +78,7 @@ class TableList extends React.Component<TableListProps, TableListState> {
     }
   }
 
-  componentDidUpdate(prevProps: TableListProps) {
+  override componentDidUpdate(prevProps: TableListProps) {
     if (this.props.visibility === false && prevProps.visibility !== this.props.visibility) {
       this.setState({
         list: this.getList(-1, -1),
@@ -86,7 +86,7 @@ class TableList extends React.Component<TableListProps, TableListState> {
     }
   }
 
-  render() {
+  override render() {
     return (
       <ul className="flex gap-1 flex-wrap w-full mx-auto justify-center" style={this.calcWrapStyle()}>
         {this.state.list.map((row, i) => row.map((col, j) => (

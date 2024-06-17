@@ -5,7 +5,7 @@ import { KeyboardEventListener } from '@editor/share/var';
 import { PluginComponent, PluginProps } from '../Plugin';
 
 export default class FontUnderline extends PluginComponent {
-  static pluginName = 'font-underline';
+  static override pluginName = 'font-underline';
 
   private handleKeyboard: KeyboardEventListener;
 
@@ -20,17 +20,17 @@ export default class FontUnderline extends PluginComponent {
     };
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     if (this.editorConfig.shortcuts) {
       this.editor.onKeyboard(this.handleKeyboard);
     }
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.offKeyboard(this.handleKeyboard);
   }
 
-  render() {
+  override  render() {
     return (
       <Button
         size="icon_sm" variant="ghost"

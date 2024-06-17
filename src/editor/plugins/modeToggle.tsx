@@ -15,9 +15,9 @@ enum NEXT_ACTION {
 
 
 class ModeToggle extends PluginComponent<ModeToggleState> {
-  static pluginName = 'mode-toggle';
+  static override pluginName = 'mode-toggle';
 
-  static align = 'right';
+  static override align = 'right';
 
 
 
@@ -44,11 +44,11 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
     this.setState({ view });
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     this.editor.on('view_change', this.handleChange);
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.off('view_change', this.handleChange);
   }
 
@@ -68,7 +68,7 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
     }
   }
 
-  render() {
+  override render() {
     const display = this.getDisplayInfo();
     const isRenderAvailable = !!this.editor.props.renderHtml?.(this.editor.getMdValue())
     if (isRenderAvailable) {

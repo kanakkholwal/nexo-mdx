@@ -9,7 +9,7 @@ import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
 
 export default class Embed extends PluginComponent {
-    static pluginName = 'embed';
+    static override pluginName = 'embed';
 
 
     constructor(props: PluginProps) {
@@ -22,7 +22,7 @@ export default class Embed extends PluginComponent {
 
 
 
-    render() {
+    override render() {
         return <Popover>
             <PopoverTrigger asChild>
                 <Button

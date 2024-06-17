@@ -5,7 +5,7 @@ import { KeyboardEventListener } from '@editor/share/var';
 import { PluginComponent, PluginProps } from '../Plugin';
 
 export default class ListUnordered extends PluginComponent {
-  static pluginName = 'list-unordered';
+  static override pluginName = 'list-unordered';
 
   private handleKeyboard: KeyboardEventListener;
 
@@ -21,17 +21,17 @@ export default class ListUnordered extends PluginComponent {
     };
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     if (this.editorConfig.shortcuts) {
       this.editor.onKeyboard(this.handleKeyboard);
     }
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.offKeyboard(this.handleKeyboard);
   }
 
-  render() {
+  override render() {
     return (
       <Button
         size="icon_sm" variant="ghost"

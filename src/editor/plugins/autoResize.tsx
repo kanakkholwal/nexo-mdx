@@ -1,11 +1,11 @@
 import { PluginComponent, PluginProps } from './Plugin';
 
 export default class AutoResize extends PluginComponent {
-  static pluginName = 'auto-resize';
+  static override pluginName = 'auto-resize';
 
-  static align = 'left';
+  static override align = 'left';
 
-  static defaultConfig = {
+  static override defaultConfig = {
     min: 200,
     max: Infinity,
     useTimer: false,
@@ -63,13 +63,13 @@ export default class AutoResize extends PluginComponent {
     this.timer = requestAnimationFrame(this.doResize);
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     this.editor.on('change', this.handleChange);
     this.editor.on('view_change', this.handleChange);
     this.handleChange();
   }
 
-  componentWillUnmount() {
+  override componentWillUnmount() {
     this.editor.off('change', this.handleChange);
     this.editor.off('view_change', this.handleChange);
     if (this.timer !== null && this.useTimer) {
@@ -78,7 +78,7 @@ export default class AutoResize extends PluginComponent {
     }
   }
 
-  render() {
+  override render() {
     return <span />;
   }
 }
