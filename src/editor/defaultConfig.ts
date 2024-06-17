@@ -4,7 +4,7 @@ const defaultConfig: EditorConfig = {
   theme: 'default',
   view:"edit",
   htmlClass: '',
-  markdownClass: '',
+  textareaClassName: '',
   syncScrollMode: ['rightFollowLeft', 'leftFollowRight'],
   imageUrl: '',
   imageAccept: '',

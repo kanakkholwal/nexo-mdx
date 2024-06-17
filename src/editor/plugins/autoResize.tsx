@@ -65,13 +65,13 @@ export default class AutoResize extends PluginComponent {
 
   componentDidMount() {
     this.editor.on('change', this.handleChange);
-    this.editor.on('viewchange', this.handleChange);
+    this.editor.on('view_change', this.handleChange);
     this.handleChange();
   }
 
   componentWillUnmount() {
     this.editor.off('change', this.handleChange);
-    this.editor.off('viewchange', this.handleChange);
+    this.editor.off('view_change', this.handleChange);
     if (this.timer !== null && this.useTimer) {
       window.clearTimeout(this.timer);
       this.timer = null;

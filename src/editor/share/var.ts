@@ -2,14 +2,14 @@ import * as React from 'react';
 
 export type UploadFunc = ((file: File) => Promise<string>) | ((file: File, callback: (url: string) => void) => void);
 
-export type EditorEvent = 'change' | 'toolbar_pin' | 'viewchange' | 'keydown' | 'focus' | 'blur' | 'scroll' | 'editor_keydown';
+export type EditorEvent = 'change' | 'toolbar_pin' | 'view_change' | 'keydown' | 'focus' | 'blur' | 'scroll' | 'editor_keydown';
 
 export interface EditorConfig {
   theme?: string;
   name?: string;
   view?: 'preview' | 'edit';
   htmlClass?: string;
-  markdownClass?: string;
+  textareaClassName?: string;
   imageUrl?: string;
   imageAccept?: string;
   linkUrl?: string;

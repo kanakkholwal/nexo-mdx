@@ -22,7 +22,7 @@ export default class Logger extends PluginComponent {
     this.handleChange = this.handleChange.bind(this);
     this.handleRedo = this.handleRedo.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
-    // Mac的Redo比较特殊，是Command+Shift+Z，优先处理
+    // Mac's Redo is special, it is Command+Shift+Z, and it is processed first.
     this.handleKeyboards = [
       { key: 'y', keyCode: 89, withKey: ['ctrlKey'], callback: this.handleRedo },
       { key: 'z', keyCode: 90, withKey: ['metaKey', 'shiftKey'], callback: this.handleRedo },
@@ -32,7 +32,7 @@ export default class Logger extends PluginComponent {
     this.logger = new LoggerPlugin({
       maxSize: this.editorConfig.loggerMaxSize,
     });
-    // 注册API
+    // Register API
     this.editor.registerPluginApi('undo', this.handleUndo);
     this.editor.registerPluginApi('redo', this.handleRedo);
   }

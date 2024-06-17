@@ -14,6 +14,7 @@ export default {
   btnCode: 'Code',
   btnTable: 'Table',
   btnImage: 'Image',
+  btnEmbed: 'Embed',
   btnLink: 'Link',
   btnUndo: 'Undo',
   btnRedo: 'Redo',

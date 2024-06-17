@@ -130,7 +130,7 @@ function getDecorated(target: string, type: string, option?: any): Decorated {
       };
     case 'image':
         // eslint-disable-next-line no-case-declarations
-        let imageText = `![${target || option.target}](${option.imageUrl || ''})`;
+        let imageText = `![${target || option.target}](${option.imageUrl || ''})\n`;
         if (option.classNames) {
           imageText = addClassNames(imageText, option.classNames);
         }

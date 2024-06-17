@@ -1,7 +1,5 @@
 import ToolBar from '@/components/ToolBar';
 import { Textarea } from '@/components/ui/textarea';
-import i18n from '@/i18n';
-import { cn } from '@/lib/utils';
 import DividerPlugin from '@/editor/plugins/divider';
 import Emitter, { globalEmitter } from '@/editor/share/emitter';
 import { EditorConfig, EditorEvent, initialSelection, KeyboardEventListener, Selection } from '@/editor/share/var';
@@ -9,6 +7,8 @@ import getDecorated from '@/editor/utils/decorate';
 import mergeConfig from '@/editor/utils/mergeConfig';
 import { getLineAndCol, isKeyMatch } from '@/editor/utils/tool';
 import getUploadPlaceholder from '@/editor/utils/uploadPlaceholder';
+import i18n from '@/i18n';
+import { cn } from '@/lib/utils';
 import { nanoid } from 'nanoid';
 import * as React from 'react';
 
@@ -19,10 +19,9 @@ type Plugin = { comp: any; config: any };
 
 type TextAreaProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'onChange' | 'value'>;
 
-interface EditorProps extends EditorConfig, TextAreaProps {
+interface EditorProps extends TextAreaProps {
   value?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  config?: any;
+  config?: EditorConfig;
   plugins?: string[];
   // Configs
   onChange?: (
@@ -255,7 +254,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
   private handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     e.persist();
     const { value } = e.target;
-    // 触发内部事件
+    // trigger internal event
     this.setText(value, e);
   }
 
@@ -419,7 +418,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
         target: option.target || curSelection.text || '',
         linkUrl: option.linkUrl || this.config.linkUrl,
       };
-      
+
     }
     if (type === 'tab' && curSelection.start !== curSelection.end) {
       const curLineStart = this.getMdValue()
@@ -586,7 +585,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
         return this.emitter.EVENT_CHANGE;
       case 'toolbar_pin':
         return this.emitter.EVENT_TOOLBAR_PIN;
-      case 'viewchange':
+      case 'view_change':
         return this.emitter.EVENT_VIEW_CHANGE;
       case 'keydown':
         return this.emitter.EVENT_KEY_DOWN;
@@ -743,10 +742,10 @@ class Editor extends React.Component<EditorProps, EditorState> {
   render() {
     const { mdText, view } = this.state;
     const getPluginAt = (at: string) => this.state.plugins[at] || [];
+
     const {
       renderHtml,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      onImageUpload,
+      defaultValue,
       ...props
     } = this.props;
 
@@ -764,19 +763,23 @@ class Editor extends React.Component<EditorProps, EditorState> {
               placeholder={this.props.placeholder || "Write some cool markdown..."}
               readOnly={this.props.readOnly}
               value={mdText}
-              className={`section-container input ${this.config.markdownClass || ''}`}
+              className={cn(`w-full h-auto`, this.config.textareaClassName)}
               wrap="hard"
               onChange={this.handleChange}
               onKeyDown={this.handleEditorKeyDown}
               onCompositionStart={() => (this.composing = true)}
               onCompositionEnd={() => (this.composing = false)}
-              onPaste={this.handlePaste}
+              onPaste={(e) => {
+                this.props.onPaste?.(e);
+                // this.handlePaste(e);
+              }}
               onFocus={this.handleFocus}
               onBlur={this.handleBlur}
             />
-          </div> : <div className="p-3 preview-container" id={"nexo-mdx-preview"} aria-label='preview-container'>
-              {renderHtml?.(mdText) ? renderHtml(mdText)! : null}
-          </div>}
+          </div> : renderHtml?.(mdText) ?
+            <div className="p-3 rounded border preview-container" id={"nexo-mdx-preview"} aria-label='preview-container'> {renderHtml(mdText)!} </div>
+            : null
+          }
         </div>
       </div>
     );

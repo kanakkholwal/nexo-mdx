@@ -17,7 +17,7 @@ class I18n {
       return;
     }
     let locale = 'enUS';
-    // 检测语言
+    // Detect language
     if (navigator.language) {
       const it = navigator.language.split('-');
       locale = it[0];

@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
 import Icon from '@/components/Icon';
+import { Button } from '@/components/ui/button';
 import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from './Plugin';
 
@@ -45,11 +45,11 @@ class ModeToggle extends PluginComponent<ModeToggleState> {
   }
 
   componentDidMount() {
-    this.editor.on('viewchange', this.handleChange);
+    this.editor.on('view_change', this.handleChange);
   }
 
   componentWillUnmount() {
-    this.editor.off('viewchange', this.handleChange);
+    this.editor.off('view_change', this.handleChange);
   }
 
   getDisplayInfo() {

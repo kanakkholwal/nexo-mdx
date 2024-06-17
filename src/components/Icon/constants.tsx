@@ -7,6 +7,7 @@ import {
     Columns2,
     Expand,
     Eye,
+    Frame,
     Grid3X3,
     Heading,
     Image as ImageIcon,
@@ -57,6 +58,7 @@ const ICON_NAMES = [
     "divider",
     "pin",
     "pin-off",
+    "embed",
 ] as const;
 const Icons :Record<typeof ICON_NAMES[number], React.FC<React.SVGProps<SVGSVGElement>>> = {
     bold: Bold,
@@ -88,6 +90,7 @@ const Icons :Record<typeof ICON_NAMES[number], React.FC<React.SVGProps<SVGSVGEle
     divider:SeparatorHorizontal,
     pin:Pin,
     "pin-off":PinOff,
+    embed: Frame
 };
 
 const ICONS = Object.keys(Icons) as (keyof typeof Icons)[];

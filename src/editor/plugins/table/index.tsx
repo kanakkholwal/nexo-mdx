@@ -1,9 +1,9 @@
 import Icon from '@/components/Icon';
 import { Button } from '@/components/ui/button';
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from "@/components/ui/popover";
 import i18n from '@/i18n';
 import { PluginComponent, PluginProps } from '@editor/plugins/Plugin';
@@ -65,7 +65,7 @@ export default class Table extends PluginComponent<State, Props> {
           <Icon type="grid" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className='max-w-[40px]' forceMount align='center'>
+      <PopoverContent className='p-2 w-max' align='center' forceMount>
         <TableList
           visibility={this.state.show}
           maxRow={config.maxRow}
