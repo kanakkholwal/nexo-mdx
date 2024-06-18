@@ -7,7 +7,7 @@
 - Supports pluggable function bars
 - Full control over UI
 - Build with Shadcn UI components, Inherits your tailwind/shadcn ui theme
-
+- Checkout more [remark plugins](https://github.com/kanakkholwal/remark-plugins)
 ## Install
 
 ```shell
