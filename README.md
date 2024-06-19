@@ -1,5 +1,7 @@
 # Nexo MDX Editor
 
+[![Build and Publish](https://github.com/kanakkholwal/nexo-mdx/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/kanakkholwal/nexo-mdx/actions/workflows/npm-publish.yml)
+
 - A Markdown editor of React component
 - Supports TypeScript
 - Support native textarea accessability in form
@@ -8,6 +10,7 @@
 - Full control over UI
 - Build with Shadcn UI components, Inherits your tailwind/shadcn ui theme
 - Checkout more [remark plugins](https://github.com/kanakkholwal/remark-plugins)
+
 ## Install
 
 ```shell
