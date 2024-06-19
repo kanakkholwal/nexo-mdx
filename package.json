@@ -1,6 +1,6 @@
 {
   "name": "nexo-mdx",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
