@@ -1,35 +1,42 @@
-
-import react from '@vitejs/plugin-react-swc';
-import * as path from 'path';
+/// <reference types="vite/client" />
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from 'node:path'
 import { defineConfig } from "vite";
-import dts from 'vite-plugin-dts';
+import dts from "vite-plugin-dts";
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
+
+
+
 export default defineConfig({
   plugins: [
     react(),
+    libInjectCss(),
     dts({
-    insertTypesEntry: true,
-    copyDtsFiles: true,
-    tsconfigPath: './tsconfig.json',
-  }),],
+      insertTypesEntry: true,
+      copyDtsFiles: true,
+      tsconfigPath: './tsconfig.json',
+    })
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./main"),
+      "@": resolve(__dirname, "./lib"),
     },
   },
   build: {
+    copyPublicDir: false,
     lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'NexoMdx',
-      fileName: (format) => `nexo-mdx.${format}.js`,
+      entry: resolve(__dirname, "./lib/index.ts"),
+      name: "nexo-mdx",
+      fileName: (format) => `index.${format}.js`,
+      formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ["react", "react-dom"],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
         },
-        exports: 'named'
       },
     },
     minify: 'terser', // Use Terser for minification

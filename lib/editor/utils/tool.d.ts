@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { KeyboardEventCondition } from '@/editor/share/var';
 export declare function deepClone<T>(obj: T): T;
 export declare function isEmpty(value: unknown): boolean;

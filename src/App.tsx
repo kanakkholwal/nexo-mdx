@@ -1,4 +1,4 @@
-import Editor from "@/index";
+import Editor from "@/main";
 import ReactMarkdown from 'react-markdown';
 import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
@@ -108,26 +108,26 @@ export default function App() {
     return <div className="w-full max-w-7xl mx-auto my-20 p-5 md:p-24">
         <div className="text-center text-2xl font-bold mb-10">
             Nexo Markdown Editor
-       
+
         </div>
 
         <Editor
             defaultValue={DEFAULT_MARKDOWN}
-            onChange={(value) => {
+            onChange={(value: string) => {
                 // console.log("value",value);
 
                 unified()
-                .use(remarkParse)  // Parse the markdown
-                .use(remarkGfm)    // Support GitHub Flavored Markdown
-                .use(remarkDirective) // Support for directives
-                .use(remarkCallout) 
-                .use(remarkRehype) // Convert remark tree to rehype tree
-                .use(rehypeFormat)
-                .use(rehypeStringify)
-                .process(value, (err, file) => {
-                    if (err) throw err
-                    console.log(String(file))
-                })
+                    .use(remarkParse)  // Parse the markdown
+                    .use(remarkGfm)    // Support GitHub Flavored Markdown
+                    .use(remarkDirective) // Support for directives
+                    .use(remarkCallout)
+                    .use(remarkRehype) // Convert remark tree to rehype tree
+                    .use(rehypeFormat)
+                    .use(rehypeStringify)
+                    .process(value, (err, file) => {
+                        if (err) throw err
+                        console.log(String(file))
+                    })
 
 
             }}

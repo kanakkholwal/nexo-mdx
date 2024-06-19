@@ -1,13 +1,24 @@
 {
   "name": "nexo-mdx",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "lib/",
+    "dist/",
+    "README.md",
+    "LICENSE"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "homepage": "https://github.com/kanakkholwal/nexo-mdx#readme",
   "repository": "https://github.com/kanakkholwal/nexo-mdx",
   "bugs": "https://github.com/kanakkholwal/nexo-mdx/issues",
@@ -29,21 +40,12 @@
     "nexo-mdx package",
     "React MDX editor"
   ],
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./types": {
-      "types": "./dist/types.d.ts"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build && node ./script.js"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",
