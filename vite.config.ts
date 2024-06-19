@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import * as path from 'path';
 import { defineConfig } from "vite";
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css'
+import { libInjectCss } from 'vite-plugin-lib-inject-css';
 export default defineConfig({
   plugins: [
     react(),
@@ -16,16 +16,13 @@ export default defineConfig({
     }),],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@editor": path.resolve(__dirname, "./src/editor"),
-      "@view": path.resolve(__dirname, "./src/view"),
+      "@": path.resolve(__dirname, "./main"),
     },
   },
   build: {
     copyPublicDir: false,
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'NexoMdx',
       formats: ['es']
     },
     rollupOptions: {

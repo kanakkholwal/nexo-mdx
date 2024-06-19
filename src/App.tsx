@@ -1,3 +1,4 @@
+import Editor from "@/index";
 import ReactMarkdown from 'react-markdown';
 import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
@@ -11,8 +12,6 @@ import {
 } from 'remark-plugins';
 import remarkRehype from 'remark-rehype';
 import { unified } from "unified";
-import Editor from "./editor";
-import React from 'react';
 
 
 const DEFAULT_MARKDOWN = `
