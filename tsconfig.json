@@ -28,9 +28,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./main/*"],
+      "@/*": ["./lib/*"],
     },
   },
-  "include": ["src", "main"],
+  "include": ["src", "lib"],
   "references": [{ "path": "./tsconfig.node.json" }],
 }
