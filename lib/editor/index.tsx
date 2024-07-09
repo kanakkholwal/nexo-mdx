@@ -38,7 +38,7 @@ export const Plugins = [
     BlockCodeBlock,
     Table,
     Image,
-    Embed,
+   //  Embed,
     Link,
     Clear,
     Logger,
