@@ -750,7 +750,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
     } = this.props;
 
     return (
-      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} ref={this.nodeMdPreviewWrapper} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
+      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} ref={this.nodeMdPreviewWrapper} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full !h-auto gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
         <ToolBar isPinned={this.isPinned()} isPreview={view === "preview"} left={getPluginAt('left')} right={getPluginAt('right')} />
         <div>
           {view === "edit" ? <div className="editor-container" aria-label='editor-container'>
@@ -763,7 +763,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
               placeholder={this.props.placeholder || "Write some cool markdown..."}
               readOnly={this.props.readOnly}
               value={mdText}
-              className={cn(`w-full h-auto`, this.config.textareaClassName)}
+              className={cn(`w-full !h-auto`, this.config.textareaClassName)}
               wrap="hard"
               onChange={this.handleChange}
               onKeyDown={this.handleEditorKeyDown}
