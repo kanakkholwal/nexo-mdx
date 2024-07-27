@@ -21,11 +21,13 @@ const deleteFilesRecursively = (dir) => {
           } else if (stats.isFile() && (file.endsWith('.d.ts') || file.endsWith('.js'))) {
             fs.unlink(filePath, err => {
               if (err) throw err;
-              console.log(`Deleted: ${filePath}`);
+              // console.log(`Deleted: ${filePath}`);
             });
           }
         });
       });
+
+      console.log("Cleanup done.")
     });
   };
 

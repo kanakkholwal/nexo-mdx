@@ -5,7 +5,7 @@ import BlockCodeInline from '@/editor/plugins/block/code-inline';
 import BlockQuote from '@/editor/plugins/block/quote';
 import BlockWrap from '@/editor/plugins/block/wrap';
 import Clear from '@/editor/plugins/clear';
-import Embed from '@/editor/plugins/embed';
+// import Embed from '@/editor/plugins/embed';
 import FontBold from '@/editor/plugins/font/bold';
 import FontItalic from '@/editor/plugins/font/italic';
 import FontStrikethrough from '@/editor/plugins/font/strikethrough';
