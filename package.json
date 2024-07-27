@@ -42,10 +42,10 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && node ./clean-up.js",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build && node ./script.js"
+    "prepublishOnly": "npm run build && node ./clean-up.js"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",
