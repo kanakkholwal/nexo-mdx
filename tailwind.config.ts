@@ -3,8 +3,9 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
-    './src/**/*.{ts,tsx}',
-	],
+	  './src/**/*.{ts,tsx}',
+  ],
+  prefix: 'nm-',
   theme: {
     container: {
       center: true,
