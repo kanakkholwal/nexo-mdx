@@ -52,8 +52,10 @@
 
 
 @layer base{
-
-  body.nexo-preview {
+  .nexo-preview *,.nexo-mdx-default-theme * {
+    @apply border-border;
+  }
+  body.nexo-preview,.nexo-mdx-default-theme {
     @apply bg-background text-foreground;
   }
 }

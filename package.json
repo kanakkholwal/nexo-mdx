@@ -11,7 +11,7 @@
     "LICENSE"
   ],
   "sideEffects": [
-  "**/*.css"
+    "**/*.css"
   ],
   "exports": {
     ".": {
@@ -20,6 +20,12 @@
       "types": "./dist/types/index.d.ts"
     },
     "./dist/style.css": "./dist/index.css"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest",
+    "directory": "dist"
   },
   "homepage": "https://github.com/kanakkholwal/nexo-mdx#readme",
   "repository": "https://github.com/kanakkholwal/nexo-mdx",
@@ -47,7 +53,9 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build && node ./clean-up.js"
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && node ./clean-up.js && changeset publish"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.0.6",
@@ -58,16 +66,10 @@
     "clsx": "^2.1.1",
     "eventemitter3": "^5.0.1",
     "lucide-react": "^0.390.0",
-    "nanoid": "^5.0.7",
-    "react-markdown": "^9.0.1",
-    "rehype-format": "^5.0.0",
-    "rehype-stringify": "^10.0.0",
-    "remark-directive": "^3.0.0",
-    "remark-gfm": "^4.0.0",
-    "remark-plugins": "^0.7.2",
-    "unified": "^11.0.4"
+    "nanoid": "^5.0.7"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.7",
     "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20.14.2",
     "@types/react": "^18.2.66",
@@ -81,18 +83,25 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.1",
     "prettier-plugin-tailwindcss": "^0.6.2",
+    "react-markdown": "^9.0.1",
+    "rehype-format": "^5.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark-directive": "^3.0.0",
+    "remark-gfm": "^4.0.0",
+    "remark-plugins": "^0.7.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",
     "terser": "^5.31.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2",
+    "unified": "^11.0.4",
     "vite": "^5.2.0",
     "vite-plugin-lib-inject-css": "^2.1.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite-plugin-dts": "^3.9.1"
+    "vite-plugin-dts": "^4.0.0-beta.2"
   }
 }
