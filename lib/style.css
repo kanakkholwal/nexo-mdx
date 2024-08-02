@@ -4,7 +4,7 @@
 
 
 @layer base {
-  :root {
+  .nexo-preview,.nexo-mdx-default-theme{
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
     --card: 0 0% 100%;
@@ -27,7 +27,7 @@
     --radius: 0.5rem;
   }
 
-  .dark {
+  .nexo-preview.dark,.nexo-mdx-default-theme.dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
     --card: 224 71.4% 4.1%;
@@ -51,10 +51,7 @@
 }
 
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+@layer base{
 
   body.nexo-preview {
     @apply bg-background text-foreground;
