@@ -1,4 +1,6 @@
-import Editor from "@/main";
+import Editor from "@/index";
+import "@/style.css";
+import React from "react";
 import ReactMarkdown from 'react-markdown';
 import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';

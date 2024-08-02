@@ -15,15 +15,15 @@ export default function ToolBar(props: ToolBarProps) {
       props.isPinned ? 'sticky top-5 left-0 right-0' : 'relative',
       "nexo-mdx-toolbar"
     )}>
-      <div className={cn("inline-flex gap-2 items-center justify-start flex-grow flex-wrap","nexo-mdx-toolbar_left")}>
+      <div className={cn("inline-flex gap-2 items-center justify-start flex-grow flex-wrap", "nexo-mdx-toolbar_left")}>
         {props.isPreview ? (<p className="text-sm text-gray-700 dark:text-gray-200 font-semibold inline-flex items-center gap-1">
           <Icon type="visibility" className="h-4 w-4 inline-block" />
           <span className="font-bold">Preview Mode</span>
           <span className="text-xs text-gray-400 dark:text-gray-500 italic"> (See how will it look after render.)</span>
         </p>) : props.left}
-      </div>
-      <div className={cn("inline-flex gap-2 items-center justify-end ml-auto","nexo-mdx-toolbar_right")}>
-        {props.right}
+        <div className={cn("inline-flex gap-2 items-center justify-end ml-auto", "nexo-mdx-toolbar_right")}>
+          {props.right}
+        </div>
       </div>
     </div>
   );
