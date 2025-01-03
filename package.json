@@ -1,6 +1,6 @@
 {
   "name": "nexo-mdx",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "type": "module",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
@@ -65,7 +65,7 @@
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "eventemitter3": "^5.0.1",
-    "lucide-react": "",
+    "lucide-react": "latest",
     "nanoid": "^5.0.7"
   },
   "devDependencies": {
@@ -94,14 +94,14 @@
     "tailwindcss-animate": "^1.0.7",
     "terser": "^5.31.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "latest",
+    "typescript": "latest",  
+    "react": "latest",
+    "react-dom": "latest",
     "unified": "^11.0.4",
     "vite": "^5.2.0",
     "vite-plugin-lib-inject-css": "^2.1.1"
   },
   "peerDependencies": {
-    "react": "latest",
-    "react-dom": "latest",
     "vite-plugin-dts": "^4.0.0-beta.2"
   }
 }
