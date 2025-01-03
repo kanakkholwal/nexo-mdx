@@ -13,7 +13,7 @@ class InputFile extends React.Component<InputFileProps, PluginProps> {
 
   private locked: boolean;
 
-  private input: React.RefObject<HTMLInputElement>;
+  private input: React.RefObject<HTMLInputElement | null>;
 
   constructor(props: InputFileProps & PluginProps) {
     super(props);
@@ -23,37 +23,32 @@ class InputFile extends React.Component<InputFileProps, PluginProps> {
   }
 
   click() {
-    if (this.locked || !this.input.current) {
-      return;
-    }
-    this.locked = true;
-    this.input.current.value = '';
-    this.input.current.click();
-    if (this.timerId) {
-      window.clearTimeout(this.timerId);
-    }
-    this.timerId = window.setTimeout(() => {
-      this.locked = false;
-      window.clearTimeout(this.timerId);
-      this.timerId = undefined;
-    }, 200);
+  if (this.locked || !this.input.current) {
+    return;
   }
-
-  override componentWillUnmount() {
-    if (this.timerId) {
-      window.clearTimeout(this.timerId);
-    }
+  this.locked = true;
+  this.input.current.value = ''; // Add `!` here
+  this.input.current.click(); // Add `!` here
+  if (this.timerId) {
+    window.clearTimeout(this.timerId);
   }
+  this.timerId = window.setTimeout(() => {
+    this.locked = false;
+    window.clearTimeout(this.timerId!); // Add `!` here
+    this.timerId = undefined;
+  }, 200);
+}
 
   override render() {
     return (
-      <Input
+    <Input
         type="file"
-        className='h-10'
+        className="h-10"
         ref={this.input}
         accept={this.props.accept}
         onChange={this.props.onChange}
       />
+
     );
   }
 }

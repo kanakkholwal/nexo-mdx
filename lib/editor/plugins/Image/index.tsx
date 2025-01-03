@@ -15,29 +15,27 @@ import InputFile from './inputFile';
 export default class Image extends PluginComponent {
   static override pluginName = 'image';
 
-  private inputFile: React.RefObject<InputFile>;
+private inputFile: React.RefObject<InputFile | null>;
 
   constructor(props: PluginProps) {
     super(props);
-
     this.inputFile = React.createRef();
     this.onImageChanged = this.onImageChanged.bind(this);
     this.handleCustomImageUpload = this.handleCustomImageUpload.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
-
-
   }
 
   private handleImageUpload() {
-    const { onImageUpload } = this.editorConfig;
-    if (typeof onImageUpload === 'function') {
-      if (this.inputFile.current) {
-        this.inputFile.current.click();
-      }
-    } else {
-      this.editor.insertMarkdown('image');
+  const { onImageUpload } = this.editorConfig;
+  if (typeof onImageUpload === 'function') {
+    if (this.inputFile.current) {
+      this.inputFile.current!.click(); // Add `!` here
     }
+  } else {
+    this.editor.insertMarkdown('image');
   }
+}
+
 
   private onImageChanged(file: File) {
     const { onImageUpload } = this.editorConfig;
@@ -91,6 +89,7 @@ export default class Image extends PluginComponent {
             }
           }}
         />
+
         <Button size="sm" variant="default_light" className="mx-auto" onClick={this.handleImageUpload}>Insert</Button>
       </PopoverContent>
     </Popover>
