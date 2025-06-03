@@ -25,4 +25,7 @@ export default {
   selectTabMap: 'Actual input when typing a Tab key',
   tab: 'Tab',
   spaces: 'Spaces',
+
+  toolbar_preview_title: 'Preview Mode',
+  toolbar_preview_description: 'You can preview the rendered content here.',
 };
