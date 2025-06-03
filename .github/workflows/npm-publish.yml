@@ -4,11 +4,15 @@ on:
   push:
     branches:
       - main
+defaults:
+ run:
+  working-directory: ./package
 
 jobs:
   build:
     name: Release
     runs-on: ubuntu-latest
+    
 
     steps:
       - name: Checkout code
