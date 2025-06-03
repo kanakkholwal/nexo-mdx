@@ -1,5 +1,8 @@
+@import "tailwindcss";
 
-.nexo-mdx-editor {
+@source "./tailwind-classes.ts";
+
+:root {
     --background: var(--background, hsl(0deg 0% 96.08%));
     --foreground: var(--foreground, hsl(0deg 0% 9.8%));
     --card: var(--card, hsl(0, 0%, 100%));

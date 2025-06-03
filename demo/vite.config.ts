@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@nexo-mdx': path.resolve(__dirname, '../package'),
+      '@nexo-mdx': path.resolve(__dirname, '../package/dist/'),
       // Add other aliases if needed
     }
   },

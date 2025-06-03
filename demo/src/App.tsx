@@ -1,4 +1,5 @@
-import Editor from "@nexo-mdx/dist";
+import Editor from "@nexo-mdx/index";
+// import "@nexo-mdx/tailwind.css";
 import { useState } from "react";
 import ReactMarkdown from 'react-markdown';
 import rehypeFormat from 'rehype-format';
@@ -108,7 +109,7 @@ export default function App() {
 
 
   return <div className="w-full max-w-7xl mx-auto my-20 p-5 md:p-20">
-    <div className="text-center text-2xl font-bold mb-10 text-neutral-800 dark:text-neutral-200">
+    <div className="text-center text-2xl font-bold mb-10 text-foreground">
       Nexo Markdown Editor
     </div>
     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
@@ -160,12 +161,12 @@ export default function App() {
       </div>
 
       <div className="w-full">
-        <div className="border-b pb-2 mb-4 border-neutral-200 dark:border-neutral-700">
-          <h4 className="text-xl font-bold text-neutral-800 dark:text-neutral-200">
+        <div className="border-b pb-2 mb-4 border-border">
+          <h4 className="text-xl font-bold text-foreground">
             Rendered Markdown
           </h4>
         </div>
-        <div className="prose dark:prose-invert p-4 bg-white dark:bg-neutral-800 rounded-lg shadow-md mb-4">
+        <div className="prose dark:prose-invert p-4 bg-background border border-border rounded-lg shadow-md mb-4">
           <ReactMarkdown
 
             remarkPlugins={[

@@ -25,7 +25,7 @@
     "baseUrl": ".",
     "paths": {
       "@nexo-mdx/*": [
-        "../package/*"
+        "../package/dist/*"
       ],
     },
   },
