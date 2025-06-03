@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import { nanoid } from 'nanoid';
 import * as React from 'react';
 
+import { classNames } from '@/classes';
 import defaultConfig from './defaultConfig';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -750,10 +751,16 @@ class Editor extends React.Component<EditorProps, EditorState> {
     } = this.props;
 
     return (
-      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} ref={this.nodeMdPreviewWrapper} aria-label='nexo-mdx-editor-container' className={cn(`nexo-mdx-editor grid w-full !h-auto gap-4 p-3`, this.props.className)} style={this.props.style} onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
+      <div id={`${this.props.id || "nexo-mdx"}-wrapper`} ref={this.nodeMdPreviewWrapper}
+        aria-label='nexo-mdx-editor-container'
+        className={cn(classNames.base.wrapper, this.props.className)}
+        style={{
+          ...this.props.style
+        }}
+        onKeyDown={this.handleKeyDown} onDrop={this.handleDrop}>
         <ToolBar isPinned={this.isPinned()} isPreview={view === "preview"} left={getPluginAt('left')} right={getPluginAt('right')} />
         <div>
-          {view === "edit" ? <div className="editor-container" aria-label='editor-container'>
+          {view === "edit" ? <div className={cn(classNames.base.editor_container)} aria-label='editor-container'>
             <Textarea
               {...props}
               name={this.props.name || "nexo-mdx-editor"}
@@ -763,7 +770,7 @@ class Editor extends React.Component<EditorProps, EditorState> {
               placeholder={this.props.placeholder || "Write some cool markdown..."}
               readOnly={this.props.readOnly}
               value={mdText}
-              className={cn(`w-full !h-auto`, this.config.textareaClassName)}
+              className={cn(classNames.base.editor, this.config.textareaClassName)}
               wrap="hard"
               onChange={this.handleChange}
               onKeyDown={this.handleEditorKeyDown}
@@ -777,7 +784,9 @@ class Editor extends React.Component<EditorProps, EditorState> {
               onBlur={this.handleBlur}
             />
           </div> : renderHtml?.(mdText) ?
-            <div className="p-3 rounded border preview-container" id={"nexo-mdx-preview"} aria-label='preview-container'> {renderHtml(mdText)!} </div>
+            <div className={cn(classNames.base.preview, "preview-container")} id={"nexo-mdx-preview"} aria-label='preview-container'>
+              {renderHtml(mdText)}
+            </div>
             : null
           }
         </div>
