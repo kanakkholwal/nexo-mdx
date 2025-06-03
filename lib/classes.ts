@@ -1,10 +1,10 @@
 
 export const classNames = {
-  base:{
-      wrapper:"nexo-mdx-editor grid w-full !h-auto gap-4 p-3",
-      editor_container:"editor-container w-full rounded-md border border-input bg-card px-3 py-2 text-sm font-medium ring-offset-background empty:!p-0",
-      editor:"editor-textarea w-full !h-auto resize-none",
-      preview:"p-3 rounded border border-border preview-container"
+  base: {
+    wrapper: "nexo-mdx-editor grid w-full !h-auto gap-4 p-3",
+    editor_container: "editor-container w-full rounded-md border border-input bg-card px-3 py-2 text-sm font-medium ring-offset-background empty:!p-0",
+    editor: "editor-textarea w-full !h-auto resize-none",
+    preview: "p-3 rounded border border-border preview-container"
   },
 
   toolbar: {
@@ -29,25 +29,12 @@ export const classNames = {
         "bg-primary/10 text-primary hover:bg-primary/20 dark:bg-primary/10 dark:text-primary hover:dark:bg-primary/5 hover:dark:text-primary",
       secondary:
         "bg-secondary text-secondary-foreground hover:bg-secondary/90",
-      success_light:
-        "bg-green-600/10 text-green-600 hover:bg-green-600/20 dark:bg-green-600/20 dark:text-green-600 hover:dark:bg-green-600/10 hover:dark:text-green-600",
-      warning_light:
-        "bg-yellow-600/10 text-yellow-600 hover:bg-yellow-600/20 dark:bg-yellow-600/20 dark:text-yellow-600 hover:dark:bg-yellow-600/10 hover:dark:text-yellow-600",
-      destructive_light:
-        "bg-red-600/10 text-red-600 hover:bg-red-600/20 dark:bg-red-600/5 dark:text-red-600 hover:dark:bg-red-600/10 hover:dark:text-red-600",
-      destructive:
-        "bg-red-100 hover:bg-red-200 text-red-700	dark:bg-red-700 dark:text-red-200 dark:hover:bg-red-800 dark:hover:text-red-200",
       outline:
         "border border-border bg-accent dark:bg-muted text-foreground hover:border-primary",
       ghost:
         "border border-transparent bg-input/50 text-muted-foreground shadow-none hover:shadow-none hover:text-foreground hover:bg-background focus-within:border-primary",
-      success:
-        "bg-green-100 text-green-700 hover:bg-green-200 hover:text-green-700",
-      slate:
-        "bg-slate-200 hover:bg-slate-300 text-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-950 dark:hover:text-slate-100",
       link: "text-primary underline-offset-4 hover:underline",
       dark: "bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200",
-
     },
     size: {
       default: "h-10 px-4 px-5 py-2.5 [&>svg]:size-5",
