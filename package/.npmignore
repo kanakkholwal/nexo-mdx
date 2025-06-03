@@ -1,0 +1,12 @@
+# .npmignore
+node_modules/
+index.html
+test/
+*.log
+*.ts
+*.map
+src/
+demo/
+.changeset/
+.github/
+

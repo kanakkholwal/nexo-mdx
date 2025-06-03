@@ -1,0 +1,60 @@
+{
+    "name": "nexo-mdx",
+    "version": "0.9.0",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/types/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch"
+    },
+    "peerDependencies": {
+        "@radix-ui/react-dropdown-menu": "^2.0.6",
+        "@radix-ui/react-popover": "^1.0.7",
+        "@radix-ui/react-slot": "^1.0.2",
+        "class-variance-authority": "^0.7.0",
+        "classnames": "^2.5.1",
+        "clsx": "^2.1.1",
+        "eventemitter3": "^5.0.1",
+        "lucide-react": "latest",
+        "nanoid": "^5.0.7",
+        "tailwind-merge": "^3.3.0",
+        "react": "latest",
+        "react-dom": "latest"
+    },
+    "devDependencies": {
+        "tsup": "^8.5.0"
+    },
+    "license": "MIT",
+    "description": "A powerful and accessible Markdown editor built with React, TypeScript, and Shadcn UI components. Nexo MDX offers a native textarea experience with full markdown support, customizable themes, and the ability to register plugins for enhanced functionality.",
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org/",
+        "tag": "latest",
+        "directory": "dist"
+    },
+    "homepage": "https://github.com/kanakkholwal/nexo-mdx#readme",
+    "repository": "https://github.com/kanakkholwal/nexo-mdx",
+    "bugs": "https://github.com/kanakkholwal/nexo-mdx/issues",
+    "author": "Kanak Kholwal (@kanakkholwal)",
+    "keywords": [
+        "Nexo MDX Editor",
+        "Markdown editor",
+        "React component",
+        "TypeScript support",
+        "native textarea accessibility",
+        "full markdown support",
+        "UI control",
+        "Shadcn UI components",
+        "tailwind theme",
+        "nexo-mdx",
+        "register plugins",
+        "MDXEditor usage",
+        "React Markdown editor",
+        "nexo-mdx package",
+        "React MDX editor"
+    ]
+}

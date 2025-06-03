@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@source "../../package/tailwind-classes.ts";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nexo-mdx-editor,:root {
+    --background: var(--background, hsl(0deg 0% 96.08%));
+    --foreground: var(--foreground, hsl(0deg 0% 9.8%));
+    --card: var(--card, hsl(0, 0%, 100%));
+    --card-foreground: var(--card-foreground, hsl(0deg 0% 9.8%));
+    --popover: var(--popover, hsl(0 0% 100%));
+    --popover-foreground: var(--popover-foreground, hsl(0deg 0% 9.8%));
+    --primary: var(--primary, hsla(262.1 83.3% 57.8%));
+    --primary-foreground: var(--primary-foreground, hsl(0deg 0% 92.16%));
+    --secondary: var(--secondary, hsla(217deg 61% 51%));
+    --secondary-foreground: var(--secondary-foreground, hsl(0deg 0% 92.16%));
+    --muted: var(--muted, hsl(210deg 40% 98.04%));
+    --muted-foreground: var(--muted-foreground, hsl(220 8.9% 46.1%));
+    --accent: var(--accent, hsl(0deg 0% 96.08%));
+    --accent-foreground: var(--accent-foreground, hsl(220.9 39.3% 11%));
+    --destructive: var(--destructive, hsl(0 84.2% 60.2%));
+    --destructive-foreground: var(--destructive-foreground, hsl(0deg 0% 92.16%));
+    --border: var(--border, hsl(220 13% 91%));
+    --input: var(--input, hsl(220 13% 91%));
+    --ring: var(--ring, hsl(262.1 83.3% 57.8%));
+    --radius: var(--radius, 0.5rem);
+}
+:root.dark {
+    --background: hsl(0deg 0% 7.06%);
+    --foreground: hsl(0deg 0% 92.16%);
+    --card: hsl(0deg 0% 9.8%);
+    --card-foreground: hsl(0deg 0% 92.16%);
+    --popover: hsl(0deg 0% 9.8%);
+    --popover-foreground: hsl(0deg 0% 92.16%);
+
+    --primary: hsl(250deg 46.29% 54.26%);
+    --primary-foreground: hsl(0deg 0% 92.16%);
+    --secondary: hsl(217deg 61% 51%);
+    --secondary-foreground: hsl(0deg 0% 92.16%);
+
+    --warning: hsl(37deg, 87%, 41%);
+    --muted: hsl(0deg 0.01% 12.16%);
+    --muted-foreground: hsl(217.9 10.6% 64.9%);
+
+    --accent: hsl(0deg 0% 9.8%);
+    --accent-foreground: hsl(0, 0%, 61%);
+    --destructive: hsl(0 62.8% 30.6%);
+    --destructive-foreground: hsl(0deg 0% 92.16%);
+    --border: hsl(0, 0%, 14%);
+    --input: hsl(0, 0%, 14%);
+    --ring: hsl(250deg 100% 80%);
+}
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-transparent: transparent;
+    --color-current: currentColor;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+
+    --font-mono: 'Fira Code', 'Courier New', 'Courier', 'monospace';
+    --font-sans: 'Inter', 'Helvetica', 'Arial', sans-serif;
+
+
+}

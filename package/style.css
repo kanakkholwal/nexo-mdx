@@ -1,0 +1,56 @@
+
+.nexo-mdx-editor {
+    --background: var(--background, hsl(0deg 0% 96.08%));
+    --foreground: var(--foreground, hsl(0deg 0% 9.8%));
+    --card: var(--card, hsl(0, 0%, 100%));
+    --card-foreground: var(--card-foreground, hsl(0deg 0% 9.8%));
+    --popover: var(--popover, hsl(0 0% 100%));
+    --popover-foreground: var(--popover-foreground, hsl(0deg 0% 9.8%));
+    --primary: var(--primary, hsla(262.1 83.3% 57.8%));
+    --primary-foreground: var(--primary-foreground, hsl(0deg 0% 92.16%));
+    --secondary: var(--secondary, hsla(217deg 61% 51%));
+    --secondary-foreground: var(--secondary-foreground, hsl(0deg 0% 92.16%));
+    --muted: var(--muted, hsl(210deg 40% 98.04%));
+    --muted-foreground: var(--muted-foreground, hsl(220 8.9% 46.1%));
+    --accent: var(--accent, hsl(0deg 0% 96.08%));
+    --accent-foreground: var(--accent-foreground, hsl(220.9 39.3% 11%));
+    --destructive: var(--destructive, hsl(0 84.2% 60.2%));
+    --destructive-foreground: var(--destructive-foreground, hsl(0deg 0% 92.16%));
+    --border: var(--border, hsl(220 13% 91%));
+    --input: var(--input, hsl(220 13% 91%));
+    --ring: var(--ring, hsl(262.1 83.3% 57.8%));
+    --radius: var(--radius, 0.5rem);
+}
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --color-transparent: transparent;
+    --color-current: currentColor;
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+
+    --font-mono: 'Fira Code', 'Courier New', 'Courier', 'monospace';
+    --font-sans: 'Inter', 'Helvetica', 'Arial', sans-serif;
+
+
+}

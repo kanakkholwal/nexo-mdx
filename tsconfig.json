@@ -1,43 +1,18 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "target": "ES2020",
-    "useDefineForClassFields": true,
+    "target": "ESNext",
     "module": "ESNext",
-    "declaration": true,
-    "moduleResolution": "bundler",
-    "noEmit": false,
     "strict": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./dist/index.d.ts"],
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./lib/*"
-      ],
-    },
+      "@nexo-mdx/*": ["package/*"],
+    }
   },
-  "include": ["lib"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["package", "demo"],
+  "exclude": ["node_modules"]
 }
