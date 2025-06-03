@@ -2,18 +2,18 @@
 export const classNames = {
   base:{
       wrapper:"nexo-mdx-editor grid w-full !h-auto gap-4 p-3",
-      editor_container:"editor-container",
+      editor_container:"editor-container w-full rounded-md border border-input bg-card px-3 py-2 text-sm font-medium ring-offset-background empty:!p-0",
       editor:"editor-textarea w-full !h-auto resize-none",
       preview:"p-3 rounded border border-border preview-container"
   },
 
   toolbar: {
-    wrapper: "flex flex-wrap gap-4 p-3 rounded-xl border border-border backdrop-blur-lg",
+    wrapper: "bg-muted inline-flex space-x-[6px] items-center border border-border rounded-md px-2 py-1",
     wrapper_pinned: "sticky top-5 left-0 right-0",
     wrapper_default: "relative",
     container_left: "inline-flex gap-2 items-center justify-start flex-grow flex-wrap",
     container_preview_div: "text-sm text-muted-foreground font-medium inline-flex items-center gap-1",
-    container_preview_icon: "size-4 inline-block",
+    container_preview_icon: "size-4 inline-block text-muted-foreground",
     container_preview_title: "text-sm text-muted-foreground font-medium inline-flex items-center gap-1",
     container_preview_description: "text-xs text-muted italic",
   },
@@ -40,7 +40,7 @@ export const classNames = {
       outline:
         "border border-border bg-accent dark:bg-muted text-foreground hover:border-primary",
       ghost:
-        "bg-slate-100/20 hover:bg-slate-100/80 backdrop-blur-md hover:text-accent-foreground dark:bg-accent dark:text-white dark:hover:bg-accent/80 dark:hover:text-white",
+        "border border-transparent bg-input/50 text-muted-foreground shadow-none hover:shadow-none hover:text-foreground hover:bg-background focus-within:border-primary",
       success:
         "bg-green-100 text-green-700 hover:bg-green-200 hover:text-green-700",
       slate:
